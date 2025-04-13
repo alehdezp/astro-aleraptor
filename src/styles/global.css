@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary-text: var(--color-cyan-100);
+  --color-secondary-text: var(--color-cyan-200);
+
+  --color-primary-background: #10172a;
+  --color-secondary-background: #1a2038;
+
+  --accent-primary: var(accent-cyan-100);
+}
+
+@layer base {
+  body {
+    @apply bg-primary-background text-primary-text;
+    @apply py-4 px-4;
+  }
+}
+
+@layer components {
+  .nav-item {
+    @apply text-secondary-text hover:text-cyan-200 p-2 border-2 border-transparent rounded-2xl;
+    @apply hover:animate-pulse hover:border-cyan-300 hover:hover:bg-secondary-background;
+  }
+}
+
+/**/
+/* body { */
+/*   background-color: #10172a; */
+/* } */

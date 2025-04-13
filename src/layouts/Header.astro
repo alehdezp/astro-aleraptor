@@ -1,0 +1,21 @@
+---
+// import Button from "@components/ui/Button.astro";
+const nav_list = [
+  { name: "Home", href: "/" },
+  { name: "Blog", href: "/blog" },
+  { name: "About", href: "/about" },
+  { name: "Contact Me 👋", href: "/contact" },
+];
+---
+
+<div class="flex w-full justify-end">
+  <nav class="flex space-x-4">
+    {
+      nav_list.map((nav_item) => (
+        <a class="nav_item" href={nav_item.href}>
+          {nav_item.name}
+        </a>
+      ))
+    }
+  </nav>
+</div>
