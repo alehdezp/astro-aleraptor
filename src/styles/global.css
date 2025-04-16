@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "daisyui";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&: is(.dark *));
 
 @theme {
   --color-primary-text: var(--color-cyan-100);
@@ -15,12 +17,20 @@
 
 @layer base {
   body {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    text-rendering: optimizeLegibility;
     @apply bg-primary-background text-primary-text;
-    @apply py-4 px-4;
+    @apply py-12 px-6;
+    @apply break-words;
+    @apply antialiased;
   }
 }
 
 @layer components {
+  .nav-bar {
+    @apply flex space-x-6;
+  }
+
   .nav-item {
     @apply text-secondary-text hover:text-cyan-200 p-2 border-2 border-transparent rounded-2xl;
     @apply hover:animate-pulse hover:border-cyan-300 hover:hover:bg-secondary-background;

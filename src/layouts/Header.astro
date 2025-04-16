@@ -1,5 +1,6 @@
 ---
-// import Button from "@components/ui/Button.astro";
+import { Image } from "astro:assets";
+
 const nav_list = [
   { name: "Home", href: "/" },
   { name: "Blog", href: "/blog" },
@@ -8,14 +9,24 @@ const nav_list = [
 ];
 ---
 
-<div class="flex w-full justify-end">
-  <nav class="flex space-x-4">
-    {
-      nav_list.map((nav_item) => (
-        <a class="nav_item" href={nav_item.href}>
-          {nav_item.name}
-        </a>
-      ))
-    }
-  </nav>
-</div>
+<header>
+  <div class="flex w-full h-20 items-center justify-between">
+    <div class="flex items-center space-x-4">
+      <img
+        src="/public/logo.png"
+        class="w-12 rounded-full border-2 border-amber-200"
+        alt="superdino"
+      />
+      <h2 class="font-semibold w-auto not-break">Astro-AleRaptor</h2>
+    </div>
+    <nav class="flex w-auto justify-end nav-bar">
+      {
+        nav_list.map((nav_item) => (
+          <a class="nav_item" href={nav_item.href}>
+            {nav_item.name}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
