@@ -1,11 +1,113 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// import Header from "@layouts/Header.astro";
-// import Footer from "@layouts/Footer.astro";
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import CardProject from "@components/ui/CardProject.astro";
+import CardPost from "@components/ui/CardPost.astro";
+import Prersentation from "@components/ui/home/Presentation.astro";
+import TimeLineItem from "@components/ui/home/TimeLineItem.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout>
-  <h1>Hello world!</h1>
+  <div
+    class="grid grid-cols-1 gap-8 place-items-center m-auto w-fit grid-flow-col-dense"
+  >
+    <div class="grid grid-cols-4 max-w-600 w-fit">
+      <Prersentation />
+      <div
+        class="col-span-4 2xl:col-span-3 lg:col-span-2 2xl:max-w-220 w-full 2xl:p-18"
+      >
+        <p class="text-3xl font-bold mb-4 text-center">
+          Welcome Space-Dinosaur! Nice to meet you!
+        </p>
+        <p class="text-xl">
+          My name is Alejandro. I am an Appsec Researcher and Ethical Hacker.
+          This is my personal website where I share my knowledge and
+          experiences. Here you will find my latest blog posts, my curriculum,
+          and my projects. I hope you enjoy your stay here!
+        </p>
+        <ul
+          class="timeline timeline-snap-icon timeline-compact timeline-vertical mt-5"
+        >
+          <TimeLineItem
+            position="start"
+            time="2014-2019"
+            title="Degree in Computer Science"
+            descriptionList={[
+              "Proficient in development using C, C++, Java, Python, and JavaScript.",
+              "Applied OOP, SOLID principles, and modern design patterns (MVC, MVVM).",
+              "Bachelor’s Thesis: Developed an Android app using Java and Android Studio.",
+            ]}
+          />
+          <TimeLineItem
+            position="middle"
+            time="2018 (4 months)"
+            title="Full Stack Developer at Itop Consulting"
+            descriptionList={[
+              "Developed secure, scalable web apps with the MEAN stack (MongoDB, Express, Angular, Node.js), integrating REST APIs and JWT authentication.",
+              "Built cross-platform mobile apps using Xamarin.Forms and .NET MAUI, optimizing performance and applying security best practices.",
+            ]}
+          />
+          <TimeLineItem
+            position="middle"
+            time="2019-2021"
+            title="Cybersecurity training and OSCP"
+            descriptionList={[
+              "Began my journey in cybersecurity, focusing on understanding offensive security concepts and defense mechanisms.",
+              "Expanded knowledge of web application vulnerabilities, OWASP Top 10 and common security issues through self-study and practical exercises.",
+              "Pursued training in ethical hacking and gained experience with penetration testing methodologies.",
+              'Successfully completed the <span class="badge badge-soft mb-1 p-1"> OSCP </span> (Offensive Security Certified Professional) certification, validating my practical cybersecurity skills.',
+            ]}
+          />
+          <TimeLineItem
+            position="end"
+            time="2021 - Present (4~ years)"
+            title="Mid Cyber Security Analyst at Hexod and Salesforce"
+            descriptionList={[
+              "Start my career as a Triager and Cyber Security Analyst at Hexod as contractors for Salesforce.",
+              "",
+            ]}
+          />
+        </ul>
+        <div>
+          <div
+            class="divider text-4xl p-4 text-center w-auto rounded-2xl m-8 font-bold mt-10 items-center"
+          >
+            Personal Projects
+            <Icon
+              name="streamline-emojis:rocket"
+              class="text-cyan-400 w-35 h-35"
+            />
+          </div>
+          <div class="grid grid-cols-3 gap-10 w-auto">
+            <CardProject />
+            <CardProject />
+            <CardProject />
+            <CardProject />
+          </div>
+        </div>
+        <div>
+          <!-- <h1 -->
+          <!--   class="text-4xl p-4 text-center w-auto bg-base-300 rounded-2xl m-8 font-bold" -->
+          <!-- > -->
+          <!--   My Lastest Blog Posts -->
+          <!-- </h1> -->
+          <div
+            class="divider text-4xl p-4 text-center w-auto rounded-2xl m-8 font-bold mt-10"
+          >
+            My Lastest Blog Posts
+            <Icon
+              name="streamline:curly-brackets-solid"
+              class="text-cyan-400 w-30 h-30"
+            />
+          </div>
+          <div class="grid grid-cols-3 gap-10 w-auto">
+            <CardPost />
+            <CardPost />
+            <CardPost />
+            <CardPost />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>

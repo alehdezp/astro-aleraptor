@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import deno from "@deno/astro-adapter";
 import tailwindcss from "@tailwindcss/vite";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,4 +17,5 @@ export default defineConfig({
       config: {},
     },
   },
+  integrations: [icon()],
 });

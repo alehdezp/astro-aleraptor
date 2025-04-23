@@ -1,0 +1,6 @@
+---
+// get props
+const { class: className = "badge-primary", name } = Astro.props;
+---
+
+<span class:list={["badge badge-soft text-base p-3", className]}>{name}</span>

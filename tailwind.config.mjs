@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+const { addDynamicIconSelectors } = require("@iconify/tailwind");
+
 export default {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  content: [
+    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
+    "./node_modules/@iconify/**/*.js",
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -8,5 +13,10 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    addDynamicIconSelectors({
+      prefix: "i",
+      overrideOnly: true,
+    }),
+  ],
 };
