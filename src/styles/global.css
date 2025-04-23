@@ -1,26 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap");
 @import "tailwindcss";
-@import "tw-animate-css";
-@plugin "daisyui";
+@plugin "@iconify/tailwind4";
 
-@custom-variant dark (&: is(.dark *));
-
-@theme {
-  --color-primary-text: var(--color-cyan-100);
-  --color-secondary-text: var(--color-cyan-200);
-
-  --color-primary-background: #10172a;
-  --color-secondary-background: #1a2038;
-
-  --accent-primary: var(accent-cyan-100);
+@plugin "daisyui" {
+  themes:
+    /* abyss --default, */
+    synthwave,
+    sunset --default;
+  /* night --default; */
+  exclude: typography;
+  /* include: badge, btn, timeline; */
 }
 
 @layer base {
   body {
     font-family: "M PLUS Rounded 1c", sans-serif;
     text-rendering: optimizeLegibility;
-    @apply bg-primary-background text-primary-text;
-    @apply py-12 px-6;
+    @apply py-12 px-4;
     @apply break-words;
     @apply antialiased;
   }
@@ -28,16 +24,35 @@
 
 @layer components {
   .nav-bar {
-    @apply flex space-x-6;
+    @apply flex w-auto justify-end items-center;
+    @apply space-x-6;
   }
 
   .nav-item {
-    @apply text-secondary-text hover:text-cyan-200 p-2 border-2 border-transparent rounded-2xl;
-    @apply hover:animate-pulse hover:border-cyan-300 hover:hover:bg-secondary-background;
+    @apply btn btn-ghost;
+    @apply text-[15px];
+  }
+
+  .card-basic {
+    @apply card bg-base-300 shadow-xl rounded-2xl p-8;
+  }
+
+  .badge-presentation-titles {
+    @apply badge badge-primary;
+    /* @apply badge-primary text-lg p-3 font-medium; */
   }
 }
 
-/**/
-/* body { */
-/*   background-color: #10172a; */
+/*   @apply badge badge-soft badge-primary text-2xl p-4 font-medium; */
+/* } */
+
+/* @layer utilities { */
+/*   .custom-badge { */
+/*     @apply badge badge-soft badge-primary; */
+/*   } */
+/* } */
+
+/* .super-alert { */
+/*   @apply badge; */
+/*   @apply badge-soft alert-warning text-xl border-2 border-dashed; */
 /* } */

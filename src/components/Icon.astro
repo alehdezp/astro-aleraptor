@@ -1,0 +1,12 @@
+---
+// src/components/Icon.astro
+import { Icon } from "astro-icon/components";
+
+const { name, size = 6 } = Astro.props;
+---
+
+<Icon
+  name={name}
+  class={`w-${size} h-${size} inline-block align-text-bottom`}
+  data-icon={name}
+/>

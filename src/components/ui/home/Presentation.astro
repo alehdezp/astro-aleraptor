@@ -1,0 +1,69 @@
+---
+import PresentationItemList from "@components/ui/home/PresentationItemList.astro";
+import { Icon } from "astro-icon/components";
+import BadgePresentation from "@components/ui/home/Badge-Presentation.astro";
+---
+
+<div
+  class="grid 2xl:col-span-1 lg:col-span-2 col-span-4 place-items-center gap-5 card-basic h-fit md:w-105 w-auto mx-auto glass"
+>
+  <img
+    src="logo.png"
+    alt="Astro Logo"
+    width="300"
+    height="300"
+    class="rounded-2xl border-secondary border-2"
+  />
+  <h1 class="text-3xl font-bold text-center">Alejandro Hernández Padron</h1>
+  <div
+    class="flex flex-wrap space-x-2 space-y-2 justify-center *:text-center *:items-center"
+  >
+    <BadgePresentation class="badge-primary" name="AppSec" />
+    <BadgePresentation class="badge-secondary" name="Ethical Hacker" />
+    <BadgePresentation class="badge-accent" name="Triager" />
+    <BadgePresentation class="badge-success" name="Secure Code Reviewer" />
+  </div>
+  <ul class="flex space-x-4 *:bg-base-100 *:p-2 *:w-13 *:rounded-xl">
+    <li class="">
+      <a href="https://github.com/alehdezp" target="_blank">
+        <Icon name="mdi:github" class="text-cyan-400 h-full w-full" />
+      </a>
+    </li>
+    <li class="">
+      <a
+        href="https://www.linkedin.com/in/alejandro-hernandez-padron"
+        target="_blank"
+      >
+        <Icon name="mdi:linkedin" class="text-cyan-400 w-full h-full" />
+      </a>
+    </li>
+    <li class="">
+      <a href="https://github.com/alehdezp" target="_blank">
+        <Icon name="mdi:twitter" class="text-cyan-400 w-full h-full" />
+      </a>
+    </li>
+  </ul>
+  <ul class="grid grid-cols-1 rounded-xl py-8 px-8 bg-base-100 w-auto">
+    <PresentationItemList
+      field_name="Email"
+      value="alehdezp8@gmail.com"
+      icon="mdi:email"
+      divider="true"
+    />
+    <PresentationItemList
+      field_name="Location"
+      value="Santa Cruz de Tenerife, Canary Islands, Spain"
+      icon="mdi:map-marker"
+      divider="true"
+    />
+    <PresentationItemList
+      field_name="Birthday"
+      value="05/03/1996"
+      icon="mdi:calendar"
+    />
+  </ul>
+  <a href="/curriculum">
+    <button class="btn btn-soft-accent text-xl">Download Curriculum</button>
+  </a>
+</div>
+<style></style>

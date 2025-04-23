@@ -7,6 +7,7 @@ import { ClientRouter } from "astro:transitions";
 
 <!doctype html>
 <html lang="en">
+  <!-- <html lang="en" data-theme="abyss"> -->
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -14,21 +15,12 @@ import { ClientRouter } from "astro:transitions";
     <meta name="generator" content={Astro.generator} />
     <title>Astro-AleRaptor</title>
   </head>
-  <body>
+  <body class="place-items-center">
     <Header />
     <ClientRouter />
-    <div class="my-10 grid grid-cols-1 mx-auto max-sm:m-8 sm:w-xl">
-      <slot />
-    </div>
+    <slot />
     <Footer />
   </body>
 </html>
 
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>
+<style></style>
