@@ -1,12 +1,13 @@
 ---
 import PresentationItemList from "@components/ui/home/PresentationItemList.astro";
 import { Icon } from "astro-icon/components";
+
 import BadgePresentation from "@components/ui/home/Badge-Presentation.astro";
+const { class: className = "" } = Astro.props;
 ---
 
-<div
-  class="grid 2xl:col-span-1 lg:col-span-2 col-span-4 place-items-center gap-5 card-basic h-fit md:w-105 w-auto mx-auto glass"
->
+<!-- <div --><!--   class="grid 2xl:col-span-1 lg:col-span-2 col-span-4 place-items-center gap-5 card-basic h-fit md:w-105 w-auto mx-auto glass" --><!-- > -->
+<div class={className}>
   <img
     src="logo.png"
     alt="Astro Logo"
@@ -63,7 +64,10 @@ import BadgePresentation from "@components/ui/home/Badge-Presentation.astro";
     />
   </ul>
   <a href="/curriculum">
-    <button class="btn btn-soft-accent text-xl">Download Curriculum</button>
+    <button
+      class="btn btn-soft btn-primary text-xl transition-all hover:scale-105"
+      >Download Curriculum</button
+    >
   </a>
 </div>
 <style></style>

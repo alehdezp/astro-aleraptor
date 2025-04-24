@@ -1,6 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap");
 @import "tailwindcss";
-@plugin "@iconify/tailwind4";
+
+@plugin "@iconify/tailwind4" {
+  scale: 0;
+  /* Set scale to 0 to allow manual sizing */
+  square: true;
+  /* Keep icons square for uniformity */
+}
 
 @plugin "daisyui" {
   themes:
@@ -9,18 +15,27 @@
     sunset --default;
   /* night --default; */
   exclude: typography;
-  /* include: badge, btn, timeline; */
 }
 
 @layer base {
   body {
     font-family: "M PLUS Rounded 1c", sans-serif;
     text-rendering: optimizeLegibility;
-    @apply py-12 px-4;
-    @apply break-words;
+    /* @apply py-12 px-4; */
+    /* @apply break-words; */
     @apply antialiased;
   }
+
+  /* @apply bg-fixed h-screen w-full bg-gradient-to-br from-indigo-900 via-blue-950 to-purple-950; */
+  html {
+    /* width: 100%; */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
 }
+
+/* @apply h-screen bg-gradient-to-tl from-cyan-900/80 via-teal-950/90 to-emerald-950; */
 
 @layer components {
   .nav-bar {
@@ -30,29 +45,10 @@
 
   .nav-item {
     @apply btn btn-ghost;
-    @apply text-[15px];
+    @apply text-[14px];
   }
 
   .card-basic {
-    @apply card bg-base-300 shadow-xl rounded-2xl p-8;
-  }
-
-  .badge-presentation-titles {
-    @apply badge badge-primary;
-    /* @apply badge-primary text-lg p-3 font-medium; */
+    @apply card bg-base-300 shadow-xl rounded-2xl p-4 md:p-6;
   }
 }
-
-/*   @apply badge badge-soft badge-primary text-2xl p-4 font-medium; */
-/* } */
-
-/* @layer utilities { */
-/*   .custom-badge { */
-/*     @apply badge badge-soft badge-primary; */
-/*   } */
-/* } */
-
-/* .super-alert { */
-/*   @apply badge; */
-/*   @apply badge-soft alert-warning text-xl border-2 border-dashed; */
-/* } */

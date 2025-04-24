@@ -2,112 +2,233 @@
 import Layout from "../layouts/Layout.astro";
 import CardProject from "@components/ui/CardProject.astro";
 import CardPost from "@components/ui/CardPost.astro";
-import Prersentation from "@components/ui/home/Presentation.astro";
+import Presentation from "@components/ui/home/Presentation.astro";
 import TimeLineItem from "@components/ui/home/TimeLineItem.astro";
 import { Icon } from "astro-icon/components";
+
+const skills = [
+  { name: "ethical-hacking", icon: "mdi:shield-check" },
+  { name: "secure-code-reviewer", icon: "mdi:code-braces" },
+  { name: "triage", icon: "mdi:bug" },
+  { name: "web-security", icon: "mdi:shield-check" },
+  { name: "automation", icon: "mdi:robot" },
+  { name: "dev-sec-ops", icon: "mdi:shield-check" },
+  { name: "ci-cd", icon: "mdi:robot" },
+  { name: "devops", icon: "mdi:robot" },
+  { name: "burp-suite", icon: "simple-icons:burpsuite" },
+  { name: "python", icon: "simple-icons:python" },
+  { name: "java", icon: "mdi:language-java" },
+  { name: "c++", icon: "simple-icons:cplusplus" },
+  { name: "typescript", icon: "simple-icons:typescript" },
+];
 ---
 
 <Layout>
   <div
-    class="grid grid-cols-1 gap-8 place-items-center m-auto w-fit grid-flow-col-dense"
+    class="relative mx-auto grid h-full w-fit grid-cols-7 content-center gap-4 max-sm:py-16"
   >
-    <div class="grid grid-cols-4 max-w-600 w-fit">
-      <Prersentation />
-      <div
-        class="col-span-4 2xl:col-span-3 lg:col-span-2 2xl:max-w-220 w-full 2xl:p-18"
+    <Presentation
+      class="card-basic 3xl:col-span-2 col-span-7 grid h-fit w-auto place-items-center gap-5 md:mx-auto md:w-130 xl:col-span-3"
+    />
+    <div
+      class="3xl:col-span-5 col-span-7 mx-auto space-y-12 p-3 xl:col-span-4 xl:max-w-220 xl:p-0 xl:px-10"
+    >
+      <p class="mb-8 text-center text-3xl font-bold">
+        Welcome Space-Dinosaur! Nice to meet you!
+      </p>
+
+      <p class="text-justify text-pretty text-xl">
+        My name is Alejandro. I am an Appsec Researcher and Ethical Hacker. This
+        is my personal website where I share my knowledge and experiences. Here
+        you will find my latest blog posts, my curriculum, and my projects. I
+        hope you enjoy your stay here!
+      </p>
+      <ul
+        class="timeline timeline-vertical timeline-compact mt-5 max-w-200 timeline-snap-icon"
       >
-        <p class="text-3xl font-bold mb-4 text-center">
-          Welcome Space-Dinosaur! Nice to meet you!
-        </p>
-        <p class="text-xl">
-          My name is Alejandro. I am an Appsec Researcher and Ethical Hacker.
-          This is my personal website where I share my knowledge and
-          experiences. Here you will find my latest blog posts, my curriculum,
-          and my projects. I hope you enjoy your stay here!
-        </p>
-        <ul
-          class="timeline timeline-snap-icon timeline-compact timeline-vertical mt-5"
-        >
-          <TimeLineItem
-            position="start"
-            time="2014-2019"
-            title="Degree in Computer Science"
-            descriptionList={[
-              "Proficient in development using C, C++, Java, Python, and JavaScript.",
-              "Applied OOP, SOLID principles, and modern design patterns (MVC, MVVM).",
-              "Bachelor’s Thesis: Developed an Android app using Java and Android Studio.",
-            ]}
-          />
-          <TimeLineItem
-            position="middle"
-            time="2018 (4 months)"
-            title="Full Stack Developer at Itop Consulting"
-            descriptionList={[
-              "Developed secure, scalable web apps with the MEAN stack (MongoDB, Express, Angular, Node.js), integrating REST APIs and JWT authentication.",
-              "Built cross-platform mobile apps using Xamarin.Forms and .NET MAUI, optimizing performance and applying security best practices.",
-            ]}
-          />
-          <TimeLineItem
-            position="middle"
-            time="2019-2021"
-            title="Cybersecurity training and OSCP"
-            descriptionList={[
-              "Began my journey in cybersecurity, focusing on understanding offensive security concepts and defense mechanisms.",
-              "Expanded knowledge of web application vulnerabilities, OWASP Top 10 and common security issues through self-study and practical exercises.",
-              "Pursued training in ethical hacking and gained experience with penetration testing methodologies.",
-              'Successfully completed the <span class="badge badge-soft mb-1 p-1"> OSCP </span> (Offensive Security Certified Professional) certification, validating my practical cybersecurity skills.',
-            ]}
-          />
-          <TimeLineItem
-            position="end"
-            time="2021 - Present (4~ years)"
-            title="Mid Cyber Security Analyst at Hexod and Salesforce"
-            descriptionList={[
-              "Start my career as a Triager and Cyber Security Analyst at Hexod as contractors for Salesforce.",
-              "",
-            ]}
-          />
-        </ul>
-        <div>
-          <div
-            class="divider text-4xl p-4 text-center w-auto rounded-2xl m-8 font-bold mt-10 items-center"
-          >
-            Personal Projects
-            <Icon
-              name="streamline-emojis:rocket"
-              class="text-cyan-400 w-35 h-35"
-            />
-          </div>
-          <div class="grid grid-cols-3 gap-10 w-auto">
-            <CardProject />
-            <CardProject />
-            <CardProject />
-            <CardProject />
-          </div>
-        </div>
-        <div>
-          <!-- <h1 -->
-          <!--   class="text-4xl p-4 text-center w-auto bg-base-300 rounded-2xl m-8 font-bold" -->
-          <!-- > -->
-          <!--   My Lastest Blog Posts -->
-          <!-- </h1> -->
-          <div
-            class="divider text-4xl p-4 text-center w-auto rounded-2xl m-8 font-bold mt-10"
-          >
-            My Lastest Blog Posts
-            <Icon
-              name="streamline:curly-brackets-solid"
-              class="text-cyan-400 w-30 h-30"
-            />
-          </div>
-          <div class="grid grid-cols-3 gap-10 w-auto">
-            <CardPost />
-            <CardPost />
-            <CardPost />
-            <CardPost />
-          </div>
-        </div>
+        <TimeLineItem
+          position="start"
+          time="2021 - Present (4~ years)"
+          title="Mid Cyber Security Analyst at Hexod and Salesforce"
+          descriptionList={[
+            "Start my career as a Triager and Cyber Security Analyst at Hexod as contractors for Salesforce.",
+            "",
+          ]}
+        />
+        <TimeLineItem
+          position="middle"
+          time="2019-2021"
+          title="Cybersecurity training and OSCP"
+          descriptionList={[
+            "Began my journey in cybersecurity, focusing on understanding offensive security concepts and defense mechanisms.",
+            "Expanded knowledge of web application vulnerabilities, OWASP Top 10 and common security issues through self-study and practical exercises.",
+            "Pursued training in ethical hacking and gained experience with penetration testing methodologies.",
+            'Successfully completed the <span class="badge badge-soft mb-1 p-1"> OSCP </span> (Offensive Security Certified Professional) certification, validating my practical cybersecurity skills.',
+          ]}
+        />
+        <TimeLineItem
+          position="middle"
+          time="2018 (4 months)"
+          title="Full Stack Developer at Itop Consulting"
+          descriptionList={[
+            "Developed secure, scalable web apps with the MEAN stack (MongoDB, Express, Angular, Node.js), integrating REST APIs and JWT authentication.",
+            "Built cross-platform mobile apps using Xamarin.Forms and .NET MAUI",
+          ]}
+        />
+        <TimeLineItem
+          position="end"
+          time="2014-2019"
+          title="Degree in Computer Science"
+          descriptionList={[
+            "Proficient in development using C, C++, Java, Python, and JavaScript.",
+            "Applied OOP, SOLID principles, and modern design patterns (MVC, MVVM).",
+            "Bachelor’s Thesis: Developed an Android app using Java and Android Studio.",
+          ]}
+        />
+      </ul>
+    </div>
+    <div
+      class="col-span-7 mx-auto flex flex-col max-w-350 justify-center text-center gap-8 px-1 pt-8 md:px-10"
+    >
+      <h1 class="text-2xl font-bold">Aptitudes and Skills</h1>
+      <div
+        class="flex flex-wrap justify-center gap-2 rounded-3xl py-3 bg-base-200 mx-4"
+      >
+        {
+          skills.map((skill) => (
+            <div class="badge badge-soft text-base badge-primary p-3">
+              <span class="text-pretty text">{skill.name}</span>
+              <Icon name={skill.icon} class="" />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <div
+      class="col-span-7 mx-auto flex max-w-350 flex-col justify-center gap-8 px-1 md:pt-10"
+    >
+      <div class="divider md:px-80"></div>
+      <div
+        class="mx-auto flex items-center justify-center gap-4 text-center text-4xl font-bold"
+      >
+        Personal Projects
+        <Icon
+          name="streamline-emojis:rocket"
+          class="max-md:hidden md:h-12 md:w-12"
+        />
+      </div>
+      <div class="flex flex-wrap justify-center gap-8">
+        <CardPost />
+        <CardPost />
+        <CardPost />
+        <CardPost />
+        <CardPost />
+      </div>
+
+      <div class="divider md:px-80"></div>
+      <div
+        class="mx-auto mt-5 flex items-center justify-center gap-4 text-center text-4xl font-bold"
+      >
+        My Lastest Blog Posts
+        <Icon
+          name="streamline:curly-brackets-solid"
+          class="max-md:hidden md:h-12 md:w-12"
+        />
+      </div>
+      <div class="flex flex-wrap justify-center gap-8">
+        <CardPost />
+        <CardPost />
+        <CardPost />
+        <CardPost />
+        <CardPost />
+        <CardPost />
       </div>
     </div>
   </div>
+  <style>
+    main {
+      margin: auto;
+      width: 100%;
+    }
+
+    /* @keyframes slide-enter { */
+    /*   0% { */
+    /*     transform: translateY(10px); */
+    /*     opacity: 0; */
+    /*   } */
+
+    @media (prefers-reduced-motion: no-preference) {
+      .slide-enter,
+      .slide-enter-content > *:not(:has(.table-of-contents)) {
+        --enter-stage: 0;
+        --enter-step: 150ms;
+        --enter-initial: 0ms;
+        animation: slide-enter 1s both 1;
+        animation-delay: calc(
+          var(--enter-initial) + var(--enter-stage) * var(--enter-step)
+        );
+      }
+
+      .slide-enter-content > *:nth-child(1) {
+        --enter-stage: 1 !important;
+      }
+      .slide-enter-content > *:nth-child(2) {
+        --enter-stage: 2 !important;
+      }
+      .slide-enter-content > *:nth-child(3) {
+        --enter-stage: 3 !important;
+      }
+      .slide-enter-content > *:nth-child(4) {
+        --enter-stage: 4 !important;
+      }
+      .slide-enter-content > *:nth-child(5) {
+        --enter-stage: 5 !important;
+      }
+      .slide-enter-content > *:nth-child(6) {
+        --enter-stage: 6 !important;
+      }
+      .slide-enter-content > *:nth-child(7) {
+        --enter-stage: 7 !important;
+      }
+      .slide-enter-content > *:nth-child(8) {
+        --enter-stage: 8 !important;
+      }
+      .slide-enter-content > *:nth-child(9) {
+        --enter-stage: 9 !important;
+      }
+      .slide-enter-content > *:nth-child(10) {
+        --enter-stage: 10 !important;
+      }
+      .slide-enter-content > *:nth-child(11) {
+        --enter-stage: 11 !important;
+      }
+      .slide-enter-content > *:nth-child(12) {
+        --enter-stage: 12 !important;
+      }
+      .slide-enter-content > *:nth-child(13) {
+        --enter-stage: 13 !important;
+      }
+      .slide-enter-content > *:nth-child(14) {
+        --enter-stage: 14 !important;
+      }
+      .slide-enter-content > *:nth-child(15) {
+        --enter-stage: 15 !important;
+      }
+      .slide-enter-content > *:nth-child(16) {
+        --enter-stage: 16 !important;
+      }
+      .slide-enter-content > *:nth-child(17) {
+        --enter-stage: 17 !important;
+      }
+      .slide-enter-content > *:nth-child(18) {
+        --enter-stage: 18 !important;
+      }
+      .slide-enter-content > *:nth-child(19) {
+        --enter-stage: 19 !important;
+      }
+      .slide-enter-content > *:nth-child(20) {
+        --enter-stage: 20 !important;
+      }
+    }
+  </style>
 </Layout>

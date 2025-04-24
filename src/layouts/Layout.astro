@@ -6,21 +6,26 @@ import { ClientRouter } from "astro:transitions";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full w-full">
   <!-- <html lang="en" data-theme="abyss"> -->
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro-AleRaptor</title>
   </head>
-  <body class="place-items-center">
-    <Header />
-    <ClientRouter />
-    <slot />
-    <Footer />
+  <body class="relative w-full h-full">
+    <div class="mx-auto w-fit px-2 my-8">
+      <!-- <Header /> -->
+      <ClientRouter />
+      <slot />
+      <!-- <Footer /> -->
+    </div>
   </body>
-</html>
 
-<style></style>
+  <style></style>
+</html>
