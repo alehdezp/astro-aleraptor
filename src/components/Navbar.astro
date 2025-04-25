@@ -1,0 +1,79 @@
+---
+import { Image } from "astro:assets";
+import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
+import Logo from "@components/ui/Logo.astro";
+import { Icon } from "astro-icon/components";
+
+const nav_list = [
+  { name: "Home", href: "/" },
+  { name: "Blog", href: "/blog" },
+  { name: "Projects", href: "/projects" },
+  { name: "About", href: "/about" },
+  { name: "Contact Me 👋", href: "/contact" },
+];
+// import { Image } from 'astro:assets'
+import { getCollection } from "astro:content";
+// import { template } from '@/settings'
+//
+// const isBlogPopulated = await getCollection('blog').then(collection => collection.length > 0)
+---
+
+<aside
+  class="px-4 pt-4 h-screen w-[20rem] bg-base-200 text-base-content flex flex-col"
+>
+  <div class="flex flex-col my-8 justify-between h-full">
+    <div>
+      <div class="flex justify-center items-center flex-col">
+        <img
+          class="mask mask-circle size-44"
+          src="/logo.png"
+          alt={`Profile picture of a Space Dinosaur`}
+        />
+        <h1
+          class="text-lg font-black mt-8 hidden lg:flex lg:items-center lg:gap-2"
+        >
+          Space Dino Dive
+          <Icon name="mdi:dinosaur-pixel" class="w-6 h-6" />
+        </h1>
+      </div>
+      <div class="mx-4 mt-16">
+        <ul
+          class="space-y-4 menu grow shrink menu-md overflow-y-auto flex flex-col items-center w-full"
+        >
+          <li class="w-full">
+            <a
+              href="/"
+              role="button"
+              class="block w-full text-center text-lg hover:scale-105 hover:font-medium"
+              >Home</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/blog"
+              class="block w-full text-center text-lg hover:scale-105 hover:font-medium"
+              >Blog</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/projects"
+              class="block w-full text-center text-lg hover:scale-105 hover:font-medium"
+              >Projects</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/contact"
+              class="block w-full text-center text-lg hover:scale-105 hover:font-medium"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="mx-4"></div>
+  </div>
+</aside>
+<style></style>
+FMEFEG

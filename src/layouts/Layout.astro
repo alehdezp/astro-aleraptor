@@ -1,7 +1,8 @@
 ---
 import "@styles/global.css";
-import Header from "@layouts/Header.astro";
-import Footer from "@layouts/Footer.astro";
+import Header from "@components/Header.astro";
+import Navbar from "@components/Navbar.astro";
+import Footer from "@components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 ---
 
@@ -19,13 +20,68 @@ import { ClientRouter } from "astro:transitions";
     <title>Astro-AleRaptor</title>
   </head>
   <body class="relative w-full h-full">
-    <div class="mx-auto w-fit px-2 my-8">
-      <!-- <Header /> -->
-      <ClientRouter />
-      <slot />
-      <!-- <Footer /> -->
+    <!-- <div class="drawer-side z-40"> -->
+    <!--   <Header /> -->
+    <!-- </div> -->
+    <!-- <div class="mx-auto w-fit px-2 my-8"> -->
+    <!--   <ClientRouter /> -->
+    <!--   <slot /> -->
+    <!--   <!-- <Footer /> -->
+    <!-- </div> -->
+    <div class={"bg-base-100 drawer lg:drawer-open max-lg:drawer-end"}>
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <!-- Drawer content -->
+      <div class="drawer-content bg-base-100">
+        <div class="bg-base-100 z-50 text-base-content shadow-sm">
+          <nav class="navbar lg:hidden">
+            <div class="navbar-start">
+              <!-- {template.menu_left && <DarkLightController />} -->
+              <label
+                for="my-drawer"
+                class="btn btn-square btn-ghost lg:hidden fixed z-10 right-4"
+              >
+                <div
+                  class="w-16 h-10 inline-flex items-center justify-center rounded-xl bg-primary/20 text-primary"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    class="size-6 stroke-current"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                  </svg>
+                </div>
+              </label>
+            </div>
+            <div class="navbar-center lg:hidden text-lg font-black">
+              Space Dino Dive
+            </div>
+            <div class="navbar-end">
+              <!-- {!template.menu_left && <DarkLightController />} -->
+            </div>
+          </nav>
+        </div>
+        <!-- <main -->
+        <!--   class="p-8 pt-10 lg:pt-16 lg:max-w-5xl max-w-full mx-auto min-h-screen flex flex-col justify-between" -->
+        <!-- > -->
+        <main class="mx-auto w-fit px-2 lg:mt-18">
+          <!-- Page content -->
+          <ClientRouter />
+          <slot />
+          <Footer />
+        </main>
+      </div>
+      <!-- Drawer side -->
+      <div class="drawer-side z-40">
+        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"
+        ></label>
+        <Navbar />
+      </div>
     </div>
-  </body>
-
-  <style></style>
+  </body><style></style>
 </html>
