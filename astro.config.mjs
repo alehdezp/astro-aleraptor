@@ -4,9 +4,14 @@ import deno from "@deno/astro-adapter";
 import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
+import sitemap from "@astrojs/sitemap";
+import rehypePrettyCode from "rehype-pretty-code";
 
-// https://astro.build/config
+import { siteConfig } from "./src/config";
+
+// @ts-ignore
 export default defineConfig({
+  site: siteConfig.site,
   output: "server",
   adapter: deno(),
   vite: {
@@ -18,5 +23,20 @@ export default defineConfig({
       config: {},
     },
   },
-  integrations: [icon(), mdx()],
+  integrations: [icon(), mdx(), sitemap()],
+  markdown: {
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: "github-dark",
+          onVisitLine(node) {
+            if (node.children.length === 0) {
+              node.children = [{ type: "text", value: " " }];
+            }
+          },
+        },
+      ],
+    ],
+  },
 });

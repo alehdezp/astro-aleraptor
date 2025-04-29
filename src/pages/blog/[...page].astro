@@ -1,0 +1,98 @@
+---
+import Layout from "@layouts/Layout.astro";
+import BlogPreview from "@components/ui/blog/BlogPreview.astro";
+import SearchBox from "@components/ui/blog/SearchBox.astro";
+import Pagination from "@components/ui/blog/Pagination.astro";
+import { getCollection } from "astro:content";
+import { filterPublishedPosts, sortPostsByDate } from "@utils/posts";
+
+// Get all posts and process them
+let page: {
+  data: any[];
+  start: number;
+  end: number;
+  total: number;
+  currentPage: number;
+  size: number;
+  lastPage: number;
+} = {
+  data: [],
+  start: 0,
+  end: 0,
+  total: 0,
+  currentPage: 1,
+  size: 10,
+  lastPage: 1,
+};
+
+try {
+  // Get the current page from the URL or default to 1
+  const currentPage = Astro.params.page ? parseInt(Astro.params.page) : 1;
+  const pageSize = 10;
+
+  // Get all blog posts
+  const allPosts = await getCollection("blog");
+  const publishedPosts = filterPublishedPosts(allPosts);
+  const sortedPosts = sortPostsByDate(publishedPosts);
+
+  // Calculate pagination values
+  const totalPosts = sortedPosts.length;
+  const lastPage = Math.max(1, Math.ceil(totalPosts / pageSize));
+  const currentPageAdjusted = Math.min(currentPage, lastPage);
+
+  // Calculate start and end indices
+  const start = (currentPageAdjusted - 1) * pageSize;
+  const end = Math.min(start + pageSize, totalPosts);
+
+  // Get posts for current page
+  const pagePosts = sortedPosts.slice(start, end);
+
+  // Create the page object that matches Astro's pagination format
+  page = {
+    data: pagePosts,
+    start,
+    end,
+    total: totalPosts,
+    currentPage: currentPageAdjusted,
+    size: pageSize,
+    lastPage,
+  };
+} catch (error) {
+  console.error("Error loading blog posts for pagination:", error);
+}
+---
+
+<Layout title="Blog Posts">
+  <div class="mx-4 sm:mx-auto lg:mt-20 w-fit my-2">
+    <div class="flex justify-between items-center ml-2 mb-10">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white">
+        Blog Posts
+      </h1>
+      <SearchBox />
+    </div>
+
+    {
+      page.data.length > 0 ? (
+        <section class="space-y-8">
+          {page.data.map((post) => (
+            <BlogPreview post={post} />
+          ))}
+        </section>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-xl">No blog posts found.</p>
+        </div>
+      )
+    }
+
+    {
+      page.lastPage > 1 && (
+        <Pagination
+          currentPage={page.currentPage}
+          totalPages={page.lastPage}
+          baseUrl="/blog/"
+        />
+      )
+    }
+  </div>
+</Layout>

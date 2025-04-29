@@ -1,0 +1,17 @@
+---
+import { formatDate } from "@utils/date";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  date: Date;
+}
+
+const { date } = Astro.props;
+---
+
+<div class="flex items-center gap-2 text-neutral-content">
+  <Icon name="mdi:calendar-blank" class="inline-block w-5 h-5" />
+  <time datetime={date.toISOString()} class="text-sm">
+    {formatDate(date)}
+  </time>
+</div>
