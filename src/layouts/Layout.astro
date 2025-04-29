@@ -3,11 +3,12 @@ import "@styles/global.css";
 import Header from "@components/Header.astro";
 import Navbar from "@components/Navbar.astro";
 import Footer from "@components/Footer.astro";
-import { ClientRouter } from "astro:transitions";
+import { ClientRouter, slide, fade } from "astro:transitions";
+import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
 ---
 
 <!doctype html>
-<html lang="en" class="h-full w-full">
+<html lang="en" class="h-full w-full scroll-smooth">
   <!-- <html lang="en" data-theme="abyss"> -->
   <head>
     <meta charset="UTF-8" />
@@ -17,17 +18,11 @@ import { ClientRouter } from "astro:transitions";
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
     <title>Astro-AleRaptor</title>
   </head>
-  <body class="relative w-full h-full">
-    <!-- <div class="drawer-side z-40"> -->
-    <!--   <Header /> -->
-    <!-- </div> -->
-    <!-- <div class="mx-auto w-fit px-2 my-8"> -->
-    <!--   <ClientRouter /> -->
-    <!--   <slot /> -->
-    <!--   <!-- <Footer /> -->
-    <!-- </div> -->
+  <body class="relative w-full h-screen">
+    <ThemeSwitch />
     <div class={"bg-base-100 drawer lg:drawer-open max-lg:drawer-end"}>
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <!-- Drawer content -->
@@ -41,7 +36,7 @@ import { ClientRouter } from "astro:transitions";
                 class="btn btn-square btn-ghost lg:hidden fixed z-10 right-4"
               >
                 <div
-                  class="w-16 h-10 inline-flex items-center justify-center rounded-xl bg-primary/20 text-primary"
+                  class="w-10 h-10 inline-flex items-center justify-center rounded-xl bg-primary/20 text-primary fixed z-10 top-4"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -69,10 +64,20 @@ import { ClientRouter } from "astro:transitions";
         <!-- <main -->
         <!--   class="p-8 pt-10 lg:pt-16 lg:max-w-5xl max-w-full mx-auto min-h-screen flex flex-col justify-between" -->
         <!-- > -->
-        <main class="mx-auto w-fit px-2 lg:mt-18">
+        <!-- <main transition:animate={fade({ duration: ".18s" })}> -->
+        <main class="flex flex-col justify-between">
           <!-- Page content -->
-          <ClientRouter />
           <slot />
+          <script>
+            document.addEventListener("astro:after-swap", () => {
+              // Re-apply theme after View Transition
+              const savedTheme = localStorage.getItem("theme");
+              if (savedTheme) {
+                document.documentElement.setAttribute("data-theme", savedTheme);
+              }
+            });
+          </script>
+
           <Footer />
         </main>
       </div>
@@ -83,5 +88,6 @@ import { ClientRouter } from "astro:transitions";
         <Navbar />
       </div>
     </div>
-  </body><style></style>
+    <style></style>
+  </body>
 </html>
