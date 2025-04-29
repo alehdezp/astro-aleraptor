@@ -1,8 +1,36 @@
 ---
-const { position, time, title, descriptionList: list = [] } = Astro.props;
+interface Tag {
+  label: string;
+  color?: string;
+}
+
+interface Props {
+  position: 'start' | 'middle' | 'end';
+  time: string;
+  title: string;
+  summary?: string;
+  descriptionList?: string[];
+  responsibilities?: string[];
+  tags?: Tag[];
+  collapsedHeight?: number; // Custom collapsed height
+}
+
+const {
+  position,
+  time,
+  title,
+  summary = "",
+  descriptionList: list = [],
+  responsibilities = [],
+  tags = [],
+  collapsedHeight = 90 // Default collapsed height
+} = Astro.props as Props;
+
+const uniqueId = `timeline-item-${Math.random().toString(36).substring(2, 11)}`;
+const hasDetails = list.length > 0 || responsibilities.length > 0;
 ---
 
-<li>
+<li class="relative">
   {(position === "end" || position === "middle") && <hr />}
   <div class="timeline-middle">
     <svg
@@ -19,12 +47,182 @@ const { position, time, title, descriptionList: list = [] } = Astro.props;
   </div>
 
   <div class="timeline-end ml-4 mb-5 md:text-start">
-    <time class="font-mono italic text-base-content">{time}</time>
-    <div class="text-lg font-black py-2">{title}</div>
-    <ul class="list-disc list-inside pl-2">
-      {list.map((item: string) => <li set:html={item} />)}
-    </ul>
+    <!-- Header with time and title -->
+    <div class="mb-2">
+      <time class="font-mono italic text-base-content">{time}</time>
+      <div class="text-lg font-bold text-primary">{title}</div>
+    </div>
+
+    <!-- Summary section -->
+    {summary && <p class="text-base-content/80 mb-3">{summary}</p>}
+
+    <!-- Content sections with expandable container -->
+    {hasDetails && (
+      <div class="timeline-expand-container" id={uniqueId} data-collapsed="true">
+        <!-- Content with gradient overlay -->
+        <div class="timeline-content" style={`--collapsed-height: ${collapsedHeight}px;`}>
+          <!-- Description section -->
+          {list.length > 0 && (
+            <div class="mb-4">
+              <h4 class="font-medium text-secondary mb-1">Description</h4>
+              <ul class="list-disc list-inside pl-2 text-base-content/80">
+                {list.map((item: string) => <li set:html={item} />)}
+              </ul>
+            </div>
+          )}
+
+          <!-- Responsibilities section -->
+          {responsibilities.length > 0 && (
+            <div class="mb-3">
+              <h4 class="font-medium text-accent mb-1">Responsibilities</h4>
+              <ul class="list-disc list-inside pl-2 text-base-content/80">
+                {responsibilities.map((item: string) => <li set:html={item} />)}
+              </ul>
+            </div>
+          )}
+
+          <!-- Fade overlay at the bottom of content -->
+          <div class="timeline-fade"></div>
+        </div>
+
+        <!-- Expand/Collapse button -->
+        <button class="timeline-toggle-btn">
+          <span class="timeline-toggle-text">Show more</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="timeline-toggle-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+    )}
+
+    <!-- Tags Section -->
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-1 mt-3">
+        {tags.map((tag: Tag) => (
+          <span class={`badge badge-sm ${tag.color || 'badge-neutral'}`}>
+            {tag.label}
+          </span>
+        ))}
+      </div>
+    )}
   </div>
 
   {(position === "start" || position === "middle") && <hr />}
 </li>
+
+<style>
+  /* Timeline collapsible content styling */
+  .timeline-expand-container {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  /* Content area with custom height variable */
+  .timeline-content {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    max-height: var(--collapsed-height);
+  }
+
+  /* Basic fade overlay with fallback colors */
+  .timeline-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(to top, white, transparent);
+    opacity: 0.8;
+    pointer-events: none;
+  }
+  
+  /* Dark theme fade overlay */
+  [data-theme="night"] .timeline-fade,
+  [data-theme="dark"] .timeline-fade,
+  [data-theme="halloween"] .timeline-fade,
+  [data-theme="forest"] .timeline-fade,
+  [data-theme="black"] .timeline-fade,
+  [data-theme="abyss"] .timeline-fade {
+    background: linear-gradient(to top, #1a1a2e, transparent);
+    opacity: 0.8;
+  }
+
+  /* Toggle button styling */
+  .timeline-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+    color: var(--p, hsl(259, 94%, 51%)); /* Primary color */
+    font-size: 0.75rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+  }
+
+  .timeline-toggle-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+  }
+
+  /* Expanded state styling */
+  .timeline-expand-container[data-collapsed="false"] .timeline-content {
+    max-height: 2000px; /* Large enough for any content */
+  }
+
+  .timeline-expand-container[data-collapsed="false"] .timeline-fade {
+    display: none;
+  }
+
+  .timeline-expand-container[data-collapsed="false"] .timeline-toggle-icon {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script is:inline>
+  // Simple theme-compatible timeline script
+  (function() {
+    function setupTimelineItems() {
+      // Get all timeline containers
+      document.querySelectorAll('.timeline-expand-container').forEach(container => {
+        const toggleBtn = container.querySelector('.timeline-toggle-btn');
+        const toggleText = container.querySelector('.timeline-toggle-text');
+
+        if (!toggleBtn) return;
+
+        // Remove old listeners
+        const newBtn = toggleBtn.cloneNode(true);
+        toggleBtn.parentNode?.replaceChild(newBtn, toggleBtn);
+
+        // Add new click listener
+        newBtn.addEventListener('click', () => {
+          const isCollapsed = container.getAttribute('data-collapsed') === 'true';
+          container.setAttribute('data-collapsed', isCollapsed ? 'false' : 'true');
+
+          // Update button text
+          const textEl = container.querySelector('.timeline-toggle-text');
+          if (textEl) {
+            textEl.textContent = isCollapsed ? 'Show less' : 'Show more';
+          }
+        });
+      });
+    }
+
+    // Run on page load and after transitions
+    setupTimelineItems();
+    document.addEventListener('astro:page-load', setupTimelineItems);
+    document.addEventListener('astro:after-swap', setupTimelineItems);
+  })();
+</script>
+
+<style>
+  /* Hide button and fade when not needed */
+  .expand-container[data-needs-expansion="false"] .button-container,
+  .expand-container[data-needs-expansion="false"] .fade-overlay {
+    display: none;
+  }
+</style>

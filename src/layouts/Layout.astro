@@ -20,6 +20,15 @@ import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
     <title>Astro-AleRaptor</title>
+    
+    <!-- Simple theme initialization -->
+    <script is:inline>
+      (function() {
+        const savedTheme = localStorage.getItem('theme') || 
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'sunset');
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      })();
+    </script>
   </head>
   <body class="relative w-full h-screen">
     <ThemeSwitch />
@@ -68,6 +77,7 @@ import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
         <main class="flex flex-col justify-between">
           <!-- Page content -->
           <slot />
+          
           <script>
             document.addEventListener("astro:after-swap", () => {
               // Re-apply theme after View Transition

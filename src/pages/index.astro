@@ -6,6 +6,7 @@ import Presentation from "@components/ui/home/Presentation.astro";
 import TimeLineItem from "@components/ui/home/TimeLineItem.astro";
 import { Icon } from "astro-icon/components";
 import TimeLine from "@components/ui/home/TimeLine.astro";
+import TimeLine2 from "@components/ui/home/TimeLine2.astro";
 
 const skills = [
   { name: "ethical-hacking", icon: "mdi:shield-check" },
@@ -53,7 +54,8 @@ const skills = [
           experiences. Here you will find my latest blog posts, my curriculum,
           and my projects. I hope you enjoy your stay here!
         </p>
-        <TimeLine />
+        <!-- <TimeLine /> -->
+        <!-- <TimeLine2 /> -->
       </div>
       <div
         class="col-span-7 mx-auto mt-4 flex w-full flex-col items-center justify-center gap-8 text-center md:px-10"
@@ -97,20 +99,13 @@ const skills = [
         <div
           class="mx-auto flex items-center justify-center gap-4 text-center text-4xl font-bold"
         >
-          My Lastest Blog Posts
+          My Latest Blog Posts
           <Icon
             name="streamline:curly-brackets-solid"
             class="max-md:hidden md:h-12 md:w-12"
           />
         </div>
-        <div class="flex flex-wrap justify-center gap-8">
-          <CardPost />
-          <CardPost />
-          <CardPost />
-          <CardPost />
-          <CardPost />
-          <CardPost />
-        </div>
+        <div class="flex flex-wrap justify-center gap-8"></div>
       </div>
     </div>
     <style>

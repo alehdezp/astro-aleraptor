@@ -9,39 +9,70 @@ import TimeLineItem from "./TimeLineItem.astro";
     position="start"
     time="2021 - Present (4~ years)"
     title="Mid Cyber Security Analyst at Hexod and Salesforce"
-    descriptionList={[
-      "Start my career as a Triager and Cyber Security Analyst at Hexod as contractors for Salesforce.",
-      "",
+    summary="Working as a Cyber Security Analyst specializing in vulnerability assessment, triage, and security remediations for enterprise applications."
+    responsibilities={[
+      "Analyze and triage security vulnerabilities to determine risk level and remediation priority",
+      "Conduct vulnerability assessments and collaborate with development teams on security fixes",
+      "Document and track security issues through resolution using enterprise-grade security tools"
+    ]}
+    tags={[
+      { label: "Vulnerability Triage", color: "badge-primary" },
+      { label: "Security Assessment", color: "badge-secondary" },
+      { label: "Enterprise Security", color: "badge-accent" }
     ]}
   />
   <TimeLineItem
     position="middle"
     time="2019-2021"
     title="Cybersecurity training and OSCP"
+    summary="Focused on intensive cybersecurity training and earned the OSCP certification, building a strong foundation in offensive security techniques and defensive strategies."
     descriptionList={[
       "Began my journey in cybersecurity, focusing on understanding offensive security concepts and defense mechanisms.",
       "Expanded knowledge of web application vulnerabilities, OWASP Top 10 and common security issues through self-study and practical exercises.",
       "Pursued training in ethical hacking and gained experience with penetration testing methodologies.",
       'Successfully completed the <span class="badge badge-soft mb-1 p-1"> OSCP </span> (Offensive Security Certified Professional) certification, validating my practical cybersecurity skills.',
     ]}
+    tags={[
+      { label: "OSCP", color: "badge-error" },
+      { label: "Ethical Hacking", color: "badge-info" },
+      { label: "Web Security", color: "badge-warning" }
+    ]}
   />
   <TimeLineItem
     position="middle"
     time="2018 (4 months)"
     title="Full Stack Developer at Itop Consulting"
+    summary="Short-term role developing full-stack web and mobile applications for enterprise clients, focusing on secure and scalable solutions."
+    responsibilities={[
+      "Designed and implemented secure web applications using modern JavaScript frameworks",
+      "Developed RESTful APIs and integrated authentication systems",
+      "Built and deployed cross-platform mobile applications"
+    ]}
     descriptionList={[
       "Developed secure, scalable web apps with the MEAN stack (MongoDB, Express, Angular, Node.js), integrating REST APIs and JWT authentication.",
       "Built cross-platform mobile apps using Xamarin.Forms and .NET MAUI",
+    ]}
+    tags={[
+      { label: "MEAN Stack", color: "badge-primary" },
+      { label: "Xamarin", color: "badge-secondary" },
+      { label: "Mobile Dev", color: "badge-success" }
     ]}
   />
   <TimeLineItem
     position="end"
     time="2014-2019"
     title="Degree in Computer Science"
+    summary="Completed comprehensive computer science education covering programming fundamentals, software engineering principles, and practical application development."
     descriptionList={[
       "Proficient in development using C, C++, Java, Python, and JavaScript.",
       "Applied OOP, SOLID principles, and modern design patterns (MVC, MVVM).",
-      "Bachelor’s Thesis: Developed an Android app using Java and Android Studio.",
+      "Bachelor's Thesis: Developed an Android app using Java and Android Studio.",
+    ]}
+    tags={[
+      { label: "C/C++", color: "badge-neutral" },
+      { label: "Java", color: "badge-secondary" },
+      { label: "Python", color: "badge-accent" },
+      { label: "BSc", color: "badge-info" }
     ]}
   />
 </ul>
