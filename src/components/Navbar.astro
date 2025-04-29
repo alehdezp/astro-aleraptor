@@ -4,76 +4,47 @@ import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
 import Logo from "@components/ui/Logo.astro";
 import { Icon } from "astro-icon/components";
 
-const nav_list = [
-  { name: "Home", href: "/" },
-  { name: "Blog", href: "/blog" },
-  { name: "Projects", href: "/projects" },
-  { name: "About", href: "/about" },
-  { name: "Contact Me 👋", href: "/contact" },
-];
 // import { Image } from 'astro:assets'
-import { getCollection } from "astro:content";
+import NavItem from "./ui/NavItem.astro";
 // import { template } from '@/settings'
 //
 // const isBlogPopulated = await getCollection('blog').then(collection => collection.length > 0)
 ---
 
 <aside
-  class="px-4 pt-4 h-screen w-[20rem] bg-base-200 text-base-content flex flex-col"
+  class="xs:w-[13rem] flex h-screen flex-col bg-base-200 pt-4 text-base-content"
 >
-  <div class="flex flex-col my-8 justify-between h-full">
+  <div class="my-8 flex h-full flex-col justify-between">
     <div>
-      <div class="flex justify-center items-center flex-col">
+      <div class="flex flex-col items-center justify-center gap-6">
         <img
-          class="mask mask-circle size-44"
+          class="mask size-44 mask-circle"
           src="/logo.png"
           alt={`Profile picture of a Space Dinosaur`}
         />
         <h1
-          class="text-lg font-black mt-8 hidden lg:flex lg:items-center lg:gap-2"
+          class=" hidden text-lg text-base-content font-black lg:flex lg:items-center lg:gap-2"
         >
           Space Dino Dive
-          <Icon name="mdi:dinosaur-pixel" class="w-6 h-6" />
         </h1>
       </div>
-      <div class="mx-4 mt-16">
+
+      <div class="mx-1 mt-22">
+
+
         <ul
-          class="space-y-4 menu grow shrink menu-md overflow-y-auto flex flex-col items-center w-full"
+          class="menu flex w-full *:w-full shrink grow flex-col items-center gap-4 space-y-4 overflow-y-auto menu-md "
         >
-          <li class="w-full">
-            <a
-              href="/"
-              role="button"
-              class="block w-full text-center text-lg hover:scale-105 hover:font-medium"
-              >Home</a
-            >
-          </li>
-          <li class="w-full">
-            <a
-              href="/blog"
-              class="block w-full text-center text-lg hover:scale-105 hover:font-medium"
-              >Blog</a
-            >
-          </li>
-          <li class="w-full">
-            <a
-              href="/projects"
-              class="block w-full text-center text-lg hover:scale-105 hover:font-medium"
-              >Projects</a
-            >
-          </li>
-          <li class="w-full">
-            <a
-              href="/contact"
-              class="block w-full text-center text-lg hover:scale-105 hover:font-medium"
-              >Contact</a
-            >
-          </li>
+          <NavItem href="/" icon="mdi:home" linkName="Home" />
+          <NavItem href="/blog" icon="streamline:hand-held-tablet-writing-solid" linkName="Blog" />
+          <NavItem href="/projects" icon="mdi:github" linkName="Projects" />
+          <NavItem href="/contact" icon="streamline:whatsapp" linkName="Contact Me" />
+          <NavItem href="/friends" icon="mdi:account-group" linkName="Friends" />
         </ul>
       </div>
     </div>
-    <div class="mx-4"></div>
   </div>
 </aside>
-<style></style>
-FMEFEG
+<style>
+.
+</style>

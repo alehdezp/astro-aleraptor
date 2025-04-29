@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap");
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @plugin "@iconify/tailwind4" {
   scale: 0;
@@ -10,32 +11,31 @@
 
 @plugin "daisyui" {
   themes:
-    /* abyss --default, */
+    abyss,
     synthwave,
-    sunset --default;
-  /* night --default; */
+    sunset --default,
+    dark,
+    night,
+    halloween,
+    forest,
+    black;
   exclude: typography;
+}
+
+@theme {
+  --breakpoint-3xl: 110rem;
+  --breakpoint-4xl: 130rem;
 }
 
 @layer base {
   body {
     font-family: "M PLUS Rounded 1c", sans-serif;
     text-rendering: optimizeLegibility;
-    /* @apply py-12 px-4; */
-    /* @apply break-words; */
+    @apply break-words;
     @apply antialiased;
-  }
-
-  /* @apply bg-fixed h-screen w-full bg-gradient-to-br from-indigo-900 via-blue-950 to-purple-950; */
-  html {
-    /* width: 100%; */
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    /* @apply h-screen bg-gradient-to-tl from-cyan-900/80 via-teal-950/90 to-emerald-950; */
   }
 }
-
-/* @apply h-screen bg-gradient-to-tl from-cyan-900/80 via-teal-950/90 to-emerald-950; */
 
 @layer components {
   .nav-bar {
@@ -49,6 +49,45 @@
   }
 
   .card-basic {
-    @apply card bg-base-300 shadow-xl rounded-2xl p-4 md:p-6;
+    @apply card bg-base-100 shadow-xl rounded-2xl p-3 2xl:p-7 lg:p-5;
   }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  filter: none !important;
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(page) {
+  animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
+}
+
+::view-transition-new(page) {
+  animation: 150ms cubic-bezier(0, 0, 0.2, 1) 50ms both fade-in;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+* {
+  backface-visibility: hidden;
 }

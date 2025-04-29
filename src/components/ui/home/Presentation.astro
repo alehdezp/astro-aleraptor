@@ -13,21 +13,18 @@ const { class: className = "" } = Astro.props;
     alt="Astro Logo"
     width="300"
     height="300"
-    class="rounded-2xl border-secondary border-2"
+    class="rounded-2xl border-2 border-secondary"
   />
-  <h1 class="text-3xl font-bold text-center">Alejandro Hernández Padron</h1>
-  <div
-    class="flex flex-wrap space-x-2 space-y-2 justify-center *:text-center *:items-center"
+  <h1 class="text-center text-3xl font-bold text-gray-50">
+    Alejandro Hernández Padron
+  </h1>
+
+  <ul
+    class="flex space-x-4 *:w-11 *:rounded-xl *:p-2 *:bg-base-200 text-gray-50!"
   >
-    <BadgePresentation class="badge-primary" name="AppSec" />
-    <BadgePresentation class="badge-secondary" name="Ethical Hacker" />
-    <BadgePresentation class="badge-accent" name="Triager" />
-    <BadgePresentation class="badge-success" name="Secure Code Reviewer" />
-  </div>
-  <ul class="flex space-x-4 *:bg-base-100 *:p-2 *:w-13 *:rounded-xl">
     <li class="">
       <a href="https://github.com/alehdezp" target="_blank">
-        <Icon name="mdi:github" class="text-cyan-400 h-full w-full" />
+        <Icon name="mdi:github" class="h-full w-full" />
       </a>
     </li>
     <li class="">
@@ -35,16 +32,26 @@ const { class: className = "" } = Astro.props;
         href="https://www.linkedin.com/in/alejandro-hernandez-padron"
         target="_blank"
       >
-        <Icon name="mdi:linkedin" class="text-cyan-400 w-full h-full" />
+        <Icon name="mdi:linkedin" class="h-full w-full" />
       </a>
     </li>
     <li class="">
       <a href="https://github.com/alehdezp" target="_blank">
-        <Icon name="mdi:twitter" class="text-cyan-400 w-full h-full" />
+        <Icon name="mdi:twitter" class="h-full w-full" />
       </a>
     </li>
   </ul>
-  <ul class="grid grid-cols-1 rounded-xl py-8 px-8 bg-base-100 w-auto">
+  <div
+    class="flex flex-wrap justify-center space-y-2 space-x-2 *:items-center *:text-center"
+  >
+    <BadgePresentation class="badge-primary" name="AppSec" />
+    <BadgePresentation class="badge-secondary" name="Ethical Hacker" />
+    <BadgePresentation class="badge-info" name="Triager" />
+    <BadgePresentation class="badge-success" name="Secure Code Reviewer" />
+  </div>
+  <ul
+    class="grid w-auto grid-cols-1 gap-2 rounded-xl bg-base-100 px-4 py-4 xl:px-6 xl:py-8"
+  >
     <PresentationItemList
       field_name="Email"
       value="alehdezp8@gmail.com"
@@ -65,7 +72,7 @@ const { class: className = "" } = Astro.props;
   </ul>
   <a href="/curriculum">
     <button
-      class="btn btn-soft btn-primary text-xl transition-all hover:scale-105"
+      class="btn text-xl transition-all btn-soft btn-primary hover:scale-105"
       >Download Curriculum</button
     >
   </a>

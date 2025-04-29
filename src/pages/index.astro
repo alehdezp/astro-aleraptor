@@ -1,10 +1,11 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import CardProject from "@components/ui/CardProject.astro";
 import CardPost from "@components/ui/CardPost.astro";
 import Presentation from "@components/ui/home/Presentation.astro";
 import TimeLineItem from "@components/ui/home/TimeLineItem.astro";
 import { Icon } from "astro-icon/components";
+import TimeLine from "@components/ui/home/TimeLine.astro";
 
 const skills = [
   { name: "ethical-hacking", icon: "mdi:shield-check" },
@@ -25,240 +26,98 @@ const skills = [
 
 <Layout>
   <div
-    class="relative mx-auto grid h-full w-fit grid-cols-7 content-center gap-4 px-4 lg:px-2"
+    class="mx-auto flex w-fit justify-between lg:mt-18 lg:ml-7 xl:ml-12 2xl:ml-16 3xl:mx-auto 2xl:gap-6 3xl:gap-12"
   >
     <Presentation
-      class="card-basic 3xl:col-span-2 col-span-7 grid h-fit w-auto place-items-center gap-5 md:mx-auto md:w-130 lg:w-100 xl:col-span-3"
+      class="card-basic sticky top-20 grid h-fit w-auto max-w-110 min-w-85 place-items-center gap-5 max-lg:hidden md:mx-auto"
     />
     <div
-      class="3xl:col-span-5 col-span-7 mx-auto space-y-12 xl:col-span-4 xl:max-w-220 xl:p-0 xl:px-10"
+      class="relative mx-auto grid h-full w-fit max-w-210 grid-cols-7 content-center gap-4 px-2 sm:mx-5"
     >
-      <p class="mb-8 text-center text-2xl font-bold lg:text-3xl">
-        Welcome Space-Dinosaur! Nice to meet you!
-      </p>
-
-      <p class="text-justify text-[17px] text-pretty">
-        My name is Alejandro. I am an Appsec Researcher and Ethical Hacker. This
-        is my personal website where I share my knowledge and experiences. Here
-        you will find my latest blog posts, my curriculum, and my projects. I
-        hope you enjoy your stay here!
-      </p>
-      <ul
-        class="timeline timeline-vertical timeline-compact mt-5 max-w-200 timeline-snap-icon"
-      >
-        <TimeLineItem
-          position="start"
-          time="2021 - Present (4~ years)"
-          title="Mid Cyber Security Analyst at Hexod and Salesforce"
-          descriptionList={[
-            "Start my career as a Triager and Cyber Security Analyst at Hexod as contractors for Salesforce.",
-            "",
-          ]}
-        />
-        <TimeLineItem
-          position="middle"
-          time="2019-2021"
-          title="Cybersecurity training and OSCP"
-          descriptionList={[
-            "Began my journey in cybersecurity, focusing on understanding offensive security concepts and defense mechanisms.",
-            "Expanded knowledge of web application vulnerabilities, OWASP Top 10 and common security issues through self-study and practical exercises.",
-            "Pursued training in ethical hacking and gained experience with penetration testing methodologies.",
-            'Successfully completed the <span class="badge badge-soft mb-1 p-1"> OSCP </span> (Offensive Security Certified Professional) certification, validating my practical cybersecurity skills.',
-          ]}
-        />
-        <TimeLineItem
-          position="middle"
-          time="2018 (4 months)"
-          title="Full Stack Developer at Itop Consulting"
-          descriptionList={[
-            "Developed secure, scalable web apps with the MEAN stack (MongoDB, Express, Angular, Node.js), integrating REST APIs and JWT authentication.",
-            "Built cross-platform mobile apps using Xamarin.Forms and .NET MAUI",
-          ]}
-        />
-        <TimeLineItem
-          position="end"
-          time="2014-2019"
-          title="Degree in Computer Science"
-          descriptionList={[
-            "Proficient in development using C, C++, Java, Python, and JavaScript.",
-            "Applied OOP, SOLID principles, and modern design patterns (MVC, MVVM).",
-            "Bachelor’s Thesis: Developed an Android app using Java and Android Studio.",
-          ]}
-        />
-      </ul>
-    </div>
-    <div
-      class="col-span-7 mt-4 flex max-w-350 flex-col justify-center gap-8 text-center md:px-10"
-    >
-      <h1 class="text-2xl font-bold">Aptitudes and Skills</h1>
-      <div
-        class="flex w-fit flex-wrap justify-center gap-2 rounded-3xl bg-base-200 px-2 py-3 lg:mx-4 lg:px-4"
-      >
-        {
-          skills.map((skill) => (
-            <div class="badge-soft badge p-3 text-sm badge-primary sm:text-base">
-              <span class=" ">{skill.name}</span>
-              <Icon name={skill.icon} class="" />
-            </div>
-          ))
-        }
-      </div>
-    </div>
-    <div
-      class="col-span-7 mx-auto flex max-w-350 flex-col justify-center gap-8 px-1 md:pt-10"
-    >
-      <div class="divider md:px-80"></div>
-      <div
-        class="mx-auto flex items-center justify-center gap-4 text-center text-4xl font-bold"
-      >
-        Personal Projects
-        <Icon
-          name="streamline-emojis:rocket"
-          class="max-md:hidden md:h-12 md:w-12"
-        />
-      </div>
-      <div class="flex flex-wrap justify-center gap-8">
-        <CardPost />
-        <CardPost />
-        <CardPost />
-        <CardPost />
-        <CardPost />
-      </div>
-
-      <div class="divider md:px-80"></div>
-      <div
-        class="mx-auto mt-5 flex items-center justify-center gap-4 text-center text-4xl font-bold"
-      >
-        My Lastest Blog Posts
-        <Icon
-          name="streamline:curly-brackets-solid"
-          class="max-md:hidden md:h-12 md:w-12"
-        />
-      </div>
-      <div class="flex flex-wrap justify-center gap-8">
-        <CardPost />
-        <CardPost />
-        <CardPost />
-        <CardPost />
-        <CardPost />
-        <CardPost />
-      </div>
-    </div>
-  </div>
-  <details
-    class="group mx-auto w-full max-w-md rounded-lg border border-slate-300 bg-white shadow transition-all"
-  >
-    <summary
-      class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium text-slate-800 transition-colors select-none hover:bg-slate-100"
-    >
-      Expand Section
-      <span
-        class="ml-2 transition-transform duration-200 group-open:rotate-180"
-      >
-        <!-- Chevron Down SVG Icon -->
-        <svg
-          class="h-5 w-5 text-slate-500"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
+      <Presentation
+        class="card-basic col-span-7 mx-auto mb-8 grid h-fit min-w-85 place-items-center gap-5 lg:hidden"
+      />
+      <!-- <div -->
+      <!--   class="3xl:col-span-5 col-span-7 mx-auto space-y-12 xl:col-span-4 xl:max-w-320 xl:p-0 xl:px-10" -->
+      <!-- > -->
+      <div class="col-span-7 mx-auto space-y-12 text-gray-50 lg:mt-14">
+        <p
+          class="mb-8 text-center text-2xl font-bold lg:mt-5 lg:text-3xl text-base-content"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </span>
-    </summary>
-    <div class="px-4 pt-2 pb-4 text-base text-slate-700 transition-all">
-      This is the expandable content. You can put any HTML here, including
-      forms, lists, or even other components.
+          Welcome Space-Dinosaur! Nice to meet you!
+        </p>
+
+        <p class="text-justify text-[17px] text-pretty">
+          My name is Alejandro. I am an Appsec Researcher and Ethical Hacker.
+          This is my personal website where I share my knowledge and
+          experiences. Here you will find my latest blog posts, my curriculum,
+          and my projects. I hope you enjoy your stay here!
+        </p>
+        <TimeLine />
+      </div>
+      <div
+        class="col-span-7 mx-auto mt-4 flex w-full flex-col items-center justify-center gap-8 text-center md:px-10"
+      >
+        <h1 class="text-2xl font-bold">Aptitudes and Skills</h1>
+        <div
+          class="flex max-w-300 flex-wrap justify-center gap-2 rounded-3xl px-2 py-3 lg:px-4"
+        >
+          {
+            skills.map((skill) => (
+              <div class="badge-soft badge p-3 text-sm badge-primary sm:text-base">
+                <Icon name={skill.icon} class="" />
+                <span class=" ">{skill.name}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div
+        class="col-span-7 mx-auto flex w-full flex-col items-center justify-center gap-8 text-center"
+      >
+        <div class="divider px-10 md:px-80"></div>
+        <div
+          class="mx-auto flex items-center justify-center gap-4 text-center text-4xl font-bold"
+        >
+          Personal Projects
+          <Icon
+            name="streamline-emojis:rocket"
+            class="max-md:hidden md:h-12 md:w-12"
+          />
+        </div>
+        <div class="flex flex-wrap justify-center gap-8">
+          <CardPost />
+          <CardPost />
+          <CardPost />
+          <CardPost />
+          <CardPost />
+        </div>
+
+        <div class="divider px-10 md:px-80"></div>
+        <div
+          class="mx-auto flex items-center justify-center gap-4 text-center text-4xl font-bold"
+        >
+          My Lastest Blog Posts
+          <Icon
+            name="streamline:curly-brackets-solid"
+            class="max-md:hidden md:h-12 md:w-12"
+          />
+        </div>
+        <div class="flex flex-wrap justify-center gap-8">
+          <CardPost />
+          <CardPost />
+          <CardPost />
+          <CardPost />
+          <CardPost />
+          <CardPost />
+        </div>
+      </div>
     </div>
-  </details>
-  <style>
-    main {
-      margin: auto;
-      width: 100%;
-    }
-
-    /* @keyframes slide-enter { */
-    /*   0% { */
-    /*     transform: translateY(10px); */
-    /*     opacity: 0; */
-    /*   } */
-
-    @media (prefers-reduced-motion: no-preference) {
-      .slide-enter,
-      .slide-enter-content > *:not(:has(.table-of-contents)) {
-        --enter-stage: 0;
-        --enter-step: 150ms;
-        --enter-initial: 0ms;
-        animation: slide-enter 1s both 1;
-        animation-delay: calc(
-          var(--enter-initial) + var(--enter-stage) * var(--enter-step)
-        );
+    <style>
+      main {
+        margin: auto;
+        width: 100%;
       }
-
-      .slide-enter-content > *:nth-child(1) {
-        --enter-stage: 1 !important;
-      }
-      .slide-enter-content > *:nth-child(2) {
-        --enter-stage: 2 !important;
-      }
-      .slide-enter-content > *:nth-child(3) {
-        --enter-stage: 3 !important;
-      }
-      .slide-enter-content > *:nth-child(4) {
-        --enter-stage: 4 !important;
-      }
-      .slide-enter-content > *:nth-child(5) {
-        --enter-stage: 5 !important;
-      }
-      .slide-enter-content > *:nth-child(6) {
-        --enter-stage: 6 !important;
-      }
-      .slide-enter-content > *:nth-child(7) {
-        --enter-stage: 7 !important;
-      }
-      .slide-enter-content > *:nth-child(8) {
-        --enter-stage: 8 !important;
-      }
-      .slide-enter-content > *:nth-child(9) {
-        --enter-stage: 9 !important;
-      }
-      .slide-enter-content > *:nth-child(10) {
-        --enter-stage: 10 !important;
-      }
-      .slide-enter-content > *:nth-child(11) {
-        --enter-stage: 11 !important;
-      }
-      .slide-enter-content > *:nth-child(12) {
-        --enter-stage: 12 !important;
-      }
-      .slide-enter-content > *:nth-child(13) {
-        --enter-stage: 13 !important;
-      }
-      .slide-enter-content > *:nth-child(14) {
-        --enter-stage: 14 !important;
-      }
-      .slide-enter-content > *:nth-child(15) {
-        --enter-stage: 15 !important;
-      }
-      .slide-enter-content > *:nth-child(16) {
-        --enter-stage: 16 !important;
-      }
-      .slide-enter-content > *:nth-child(17) {
-        --enter-stage: 17 !important;
-      }
-      .slide-enter-content > *:nth-child(18) {
-        --enter-stage: 18 !important;
-      }
-      .slide-enter-content > *:nth-child(19) {
-        --enter-stage: 19 !important;
-      }
-      .slide-enter-content > *:nth-child(20) {
-        --enter-stage: 20 !important;
-      }
-    }
-  </style>
+    </style>
+  </div>
 </Layout>

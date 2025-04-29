@@ -1,0 +1,18 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { href, icon, linkName, classListNav } = Astro.props;
+---
+
+<li>
+  <a
+    href={href}
+    class:list={[
+      "flex w-full items-center transition-all duration-200 justify-start gap-4 text-center text-lg hover:scale-105 hover:font-medium",
+      classListNav,
+    ]}
+  >
+    <Icon name={icon} class="h-6 w-6" />
+    {linkName}</a
+  >
+</li>
