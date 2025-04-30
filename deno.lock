@@ -1,11 +1,25 @@
 {
   "version": "4",
   "specifiers": {
+    "jsr:@std/cli@^1.0.17": "1.0.17",
+    "jsr:@std/encoding@^1.0.10": "1.0.10",
+    "jsr:@std/fmt@^1.0.7": "1.0.7",
+    "jsr:@std/html@^1.0.3": "1.0.3",
+    "jsr:@std/http@1.0": "1.0.15",
+    "jsr:@std/media-types@^1.1.0": "1.1.0",
+    "jsr:@std/net@^1.0.4": "1.0.4",
+    "jsr:@std/path@1.0": "1.0.9",
+    "jsr:@std/path@^1.0.9": "1.0.9",
+    "jsr:@std/streams@^1.0.9": "1.0.9",
+    "npm:@astrojs/mdx@4.2.5": "4.2.5_astro@5.7.5__vite@6.2.6__zod@3.24.3_acorn@8.14.1",
     "npm:@astrojs/mdx@^4.2.5": "4.2.5_astro@5.7.5__vite@6.2.6__zod@3.24.3_acorn@8.14.1",
     "npm:@astrojs/rss@^4.0.11": "4.0.11",
+    "npm:@astrojs/sitemap@3.3.1": "3.3.1",
     "npm:@astrojs/sitemap@^3.3.1": "3.3.1",
+    "npm:@astrojs/tailwind@6.0.2": "6.0.2_astro@5.7.5__vite@6.2.6__zod@3.24.3_tailwindcss@4.1.3_postcss@8.5.3",
     "npm:@astrojs/tailwind@^6.0.2": "6.0.2_astro@5.7.5__vite@6.2.6__zod@3.24.3_tailwindcss@4.1.3_postcss@8.5.3",
     "npm:@deno/astro-adapter@0.3": "0.3.0_astro@5.7.5__vite@6.2.6__zod@3.24.3",
+    "npm:@deno/astro-adapter@0.3.0": "0.3.0_astro@5.7.5__vite@6.2.6__zod@3.24.3",
     "npm:@eslint/js@^9.24.0": "9.24.0",
     "npm:@iconify-json/mdi@^1.2.3": "1.2.3",
     "npm:@iconify-json/simple-icons@^1.2.33": "1.2.33",
@@ -20,10 +34,12 @@
     "npm:@typescript-eslint/parser@^8.29.1": "8.29.1_eslint@9.24.0_typescript@5.8.3",
     "npm:astro-google-analytics@^1.0.3": "1.0.3",
     "npm:astro-icon@^1.1.5": "1.1.5",
+    "npm:astro@*": "5.7.5_vite@6.2.6_zod@3.24.3",
     "npm:astro@5.7.5": "5.7.5_vite@6.2.6_zod@3.24.3",
     "npm:class-variance-authority@~0.7.1": "0.7.1",
     "npm:clsx@^2.1.1": "2.1.1",
     "npm:daisyui@^5.0.22": "5.0.22",
+    "npm:deno@2.2.9": "2.2.9",
     "npm:deno@^2.2.9": "2.2.9",
     "npm:eslint-plugin-astro@^1.3.1": "1.3.1_eslint@9.24.0",
     "npm:eslint@^9.24.0": "9.24.0",
@@ -31,13 +47,55 @@
     "npm:lucide-react@0.488": "0.488.0_react@19.1.0",
     "npm:prettier-plugin-astro@~0.14.1": "0.14.1",
     "npm:prettier@^3.5.3": "3.5.3",
+    "npm:react@19.1.0": "19.1.0",
     "npm:react@^19.1.0": "19.1.0",
+    "npm:rehype-pretty-code@0.14.1": "0.14.1_shiki@3.3.0",
     "npm:rehype-pretty-code@~0.14.1": "0.14.1_shiki@3.3.0",
     "npm:tailwind-merge@^3.2.0": "3.2.0",
+    "npm:tailwindcss@4.1.3": "4.1.3",
     "npm:tailwindcss@^4.1.3": "4.1.3",
     "npm:theme-change@^2.5.0": "2.5.0",
     "npm:tw-animate-css@^1.2.5": "1.2.5",
     "npm:typescript-eslint@^8.30.1": "8.30.1_eslint@9.24.0_typescript@5.8.3_@typescript-eslint+parser@8.30.1__eslint@9.24.0__typescript@5.8.3"
+  },
+  "jsr": {
+    "@std/cli@1.0.17": {
+      "integrity": "e15b9abe629e17be90cc6216327f03a29eae613365f1353837fa749aad29ce7b"
+    },
+    "@std/encoding@1.0.10": {
+      "integrity": "8783c6384a2d13abd5e9e87a7ae0520a30e9f56aeeaa3bdf910a3eaaf5c811a1"
+    },
+    "@std/fmt@1.0.7": {
+      "integrity": "2a727c043d8df62cd0b819b3fb709b64dd622e42c3b1bb817ea7e6cc606360fb"
+    },
+    "@std/html@1.0.3": {
+      "integrity": "7a0ac35e050431fb49d44e61c8b8aac1ebd55937e0dc9ec6409aa4bab39a7988"
+    },
+    "@std/http@1.0.15": {
+      "integrity": "435a4934b4e196e82a8233f724da525f7b7112f3566502f28815e94764c19159",
+      "dependencies": [
+        "jsr:@std/cli",
+        "jsr:@std/encoding",
+        "jsr:@std/fmt",
+        "jsr:@std/html",
+        "jsr:@std/media-types",
+        "jsr:@std/net",
+        "jsr:@std/path@^1.0.9",
+        "jsr:@std/streams"
+      ]
+    },
+    "@std/media-types@1.1.0": {
+      "integrity": "c9d093f0c05c3512932b330e3cc1fe1d627b301db33a4c2c2185c02471d6eaa4"
+    },
+    "@std/net@1.0.4": {
+      "integrity": "2f403b455ebbccf83d8a027d29c5a9e3a2452fea39bb2da7f2c04af09c8bc852"
+    },
+    "@std/path@1.0.9": {
+      "integrity": "260a49f11edd3db93dd38350bf9cd1b4d1366afa98e81b86167b4e3dd750129e"
+    },
+    "@std/streams@1.0.9": {
+      "integrity": "a9d26b1988cdd7aa7b1f4b51e1c36c1557f3f252880fa6cc5b9f37078b1a5035"
+    }
   },
   "npm": {
     "@antfu/install-pkg@1.0.0": {
@@ -4143,6 +4201,16 @@
     }
   },
   "workspace": {
+    "dependencies": [
+      "npm:@astrojs/mdx@4.2.5",
+      "npm:@astrojs/sitemap@3.3.1",
+      "npm:@astrojs/tailwind@6.0.2",
+      "npm:@deno/astro-adapter@0.3.0",
+      "npm:astro@5.7.5",
+      "npm:react@19.1.0",
+      "npm:rehype-pretty-code@0.14.1",
+      "npm:tailwindcss@4.1.3"
+    ],
     "packageJson": {
       "dependencies": [
         "npm:@astrojs/mdx@^4.2.5",

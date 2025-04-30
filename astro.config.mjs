@@ -16,12 +16,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  image: {
-    service: {
-      entrypoint: "@astrojs/image/squoosh",
-      config: {},
-    },
-  },
   integrations: [icon(), mdx(), sitemap()],
   markdown: {
     rehypePlugins: [
