@@ -1,0 +1,29 @@
+---
+import Layout from "@layouts/Layout.astro";
+import CardProject from "@components/ui/CardProject.astro";
+
+// Get all posts and process them
+---
+
+<Layout title="Personal Projects">
+  <div class="mx-4 sm:mx-auto lg:mt-28 mb-20 md:px-8 px-3">
+    <div class="flex justify-between items-center ml-2 mb-16">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white">
+        Personal Projects
+      </h1>
+    </div>
+    <div class="grid md:grid-cols-2 2xl:grid-cols-3 gap-5 mx-1">
+      <CardProject
+        title="Astro-AleRaptor"
+        summary="A personal website built with Astro."
+        url="https://github.com/alehdezp/astro-aleraptor"
+        descriptionList={[
+          "This website is built with Astro and TailwindCSS.",
+          "Uses the Astro adapter for Deno.",
+          "Designed to be used as portfolio and blog website.",
+        ]}
+        tags={["Astro", "TailwindCSS", "Markdown"]}
+      />
+    </div>
+  </div>
+</Layout>

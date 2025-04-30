@@ -13,7 +13,7 @@ const { title, date, tags, image } = post.data;
 ---
 
 <Layout title={title}>
-  <article class="max-w-3xl mx-auto px-4 mt-20">
+  <article class="max-w-3xl w-full! text-wrap mx-auto px-4 mt-20">
     {
       image && (
         <img
@@ -26,7 +26,7 @@ const { title, date, tags, image } = post.data;
     }
     <header class="mb-10">
       <h1
-        class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-gray-100"
+        class="text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-gray-100"
       >
         {title}
       </h1>
@@ -36,7 +36,7 @@ const { title, date, tags, image } = post.data;
       {tags && <PostTags tags={tags} />}
     </header>
     <div
-      class="prose prose-lg dark:prose-invert
+      class="text-wrap prose max-w-none prose-lg md:prose-lg dark:prose-invert
        dark:prose-headings:text-gray-100
       prose-p:text-gray-700 dark:prose-p:text-gray-300
       prose-a:text-primary-600 dark:prose-a:text-primary-400
@@ -46,7 +46,8 @@ const { title, date, tags, image } = post.data;
       prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300
       prose-span:text-gray-700 dark:prose-span:text-gray-300
       prose-li:text-gray-700 dark:prose-li:text-gray-300
-      max-w-none prose-img:rounded-xl prose-headings:text-primary-content prose-h1:text-base-content prose-h2:text-base-content prose-h3:text-accent-content"
+      prose-img:rounded-xl prose-headings:text-primary-content prose-h1:text-base-content prose-h2:text-base-content prose-h3:text-accent-content
+    prose-blockquote:w-20 prose-code:w-20"
     >
       <slot />
     </div>

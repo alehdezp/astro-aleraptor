@@ -15,7 +15,7 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  site: "https://example.com/", // TODO T
+  site: "https://dinospacedive.com/", // TODO T
   title: "Dino Space Dive",
   slogan: "Dino Space Dive",
   description: "Welcome to my personal website",

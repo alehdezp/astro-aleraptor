@@ -1,12 +1,14 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import CardProject from "@components/ui/CardProject.astro";
 import CardPost from "@components/ui/CardPost.astro";
 import Presentation from "@components/ui/home/Presentation.astro";
-import TimeLineItem from "@components/ui/home/TimeLineItem.astro";
 import { Icon } from "astro-icon/components";
 import TimeLine from "@components/ui/home/TimeLine.astro";
-import TimeLine2 from "@components/ui/home/TimeLine2.astro";
+import BlogPreview from "@components/ui/blog/BlogPreview.astro";
+import CardProject from "@components/ui/CardProject.astro";
+
+import { getCollection } from "astro:content";
+import { filterPublishedPosts, sortPostsByDate } from "@utils/posts";
 
 const skills = [
   { name: "ethical-hacking", icon: "mdi:shield-check" },
@@ -23,6 +25,61 @@ const skills = [
   { name: "c++", icon: "simple-icons:cplusplus" },
   { name: "typescript", icon: "simple-icons:typescript" },
 ];
+
+// Get all posts and process them
+let page: {
+  data: any[];
+  start: number;
+  end: number;
+  total: number;
+  currentPage: number;
+  size: number;
+  lastPage: number;
+} = {
+  data: [],
+  start: 0,
+  end: 0,
+  total: 0,
+  currentPage: 1,
+  size: 10,
+  lastPage: 1,
+};
+
+try {
+  // Get the current page from the URL or default to 1
+  const currentPage = Astro.params.page ? parseInt(Astro.params.page) : 1;
+  const pageSize = 10;
+
+  // Get all blog posts
+  const allPosts = await getCollection("blog");
+  const publishedPosts = filterPublishedPosts(allPosts);
+  const sortedPosts = sortPostsByDate(publishedPosts);
+
+  // Calculate pagination values
+  const totalPosts = sortedPosts.length;
+  const lastPage = Math.max(1, Math.ceil(totalPosts / pageSize));
+  const currentPageAdjusted = Math.min(currentPage, lastPage);
+
+  // Calculate start and end indices
+  const start = (currentPageAdjusted - 1) * pageSize;
+  const end = Math.min(start + pageSize, totalPosts);
+
+  // Get posts for current page
+  const pagePosts = sortedPosts.slice(start, end);
+
+  // Create the page object that matches Astro's pagination format
+  page = {
+    data: pagePosts,
+    start,
+    end,
+    total: totalPosts,
+    currentPage: currentPageAdjusted,
+    size: pageSize,
+    lastPage,
+  };
+} catch (error) {
+  console.error("Error loading blog posts for pagination:", error);
+}
 ---
 
 <Layout>
@@ -30,7 +87,7 @@ const skills = [
     class="mx-auto flex w-fit justify-between lg:mt-18 lg:ml-7 xl:ml-12 2xl:ml-16 3xl:mx-auto 2xl:gap-6 3xl:gap-12"
   >
     <Presentation
-      class="card-basic sticky top-20 grid h-fit w-auto max-w-110 min-w-85 place-items-center gap-5 max-lg:hidden md:mx-auto"
+      class="card-basic sticky top-25 grid h-fit w-auto max-w-110 min-w-85 place-items-center gap-5 max-lg:hidden md:mx-auto"
     />
     <div
       class="relative mx-auto grid h-full w-fit max-w-210 grid-cols-7 content-center gap-4 px-2 sm:mx-5"
@@ -41,28 +98,30 @@ const skills = [
       <!-- <div -->
       <!--   class="3xl:col-span-5 col-span-7 mx-auto space-y-12 xl:col-span-4 xl:max-w-320 xl:p-0 xl:px-10" -->
       <!-- > -->
-      <div class="col-span-7 mx-auto space-y-12 text-gray-50 lg:mt-14">
-        <p
-          class="mb-8 text-center text-2xl font-bold lg:mt-5 lg:text-3xl text-base-content"
+      <div class="col-span-7 mx-auto space-y-6 lg:mt-4 text-base-content">
+        <h1
+          class="mb-8 text-center text-2xl font-black lg:mt-5 lg:text-3xl text-gray-50"
         >
           Welcome Space-Dinosaur! Nice to meet you!
-        </p>
+        </h1>
 
-        <p class="text-justify text-[17px] text-pretty">
+        <p class="text-justify text-[17px] text-pretty lg:px-4 px-4">
           My name is Alejandro. I am an Appsec Researcher and Ethical Hacker.
           This is my personal website where I share my knowledge and
           experiences. Here you will find my latest blog posts, my curriculum,
           and my projects. I hope you enjoy your stay here!
         </p>
-        <!-- <TimeLine /> -->
+
+        <h2 class="text-2xl font-bold text-center mt-8">About my career</h2>
+        <TimeLine />
         <!-- <TimeLine2 /> -->
       </div>
       <div
-        class="col-span-7 mx-auto mt-4 flex w-full flex-col items-center justify-center gap-8 text-center md:px-10"
+        class="col-span-7 mx-auto mt-4 flex w-full flex-col items-center justify-center gap-6 text-center md:px-10"
       >
-        <h1 class="text-2xl font-bold">Aptitudes and Skills</h1>
+        <h2 class="text-2xl font-bold">Skills</h2>
         <div
-          class="flex max-w-300 flex-wrap justify-center gap-2 rounded-3xl px-2 py-3 lg:px-4"
+          class="flex max-w-300 flex-wrap justify-center gap-2 rounded-3xl px-2 lg:px-4"
         >
           {
             skills.map((skill) => (
@@ -75,44 +134,57 @@ const skills = [
         </div>
       </div>
       <div
-        class="col-span-7 mx-auto flex w-full flex-col items-center justify-center gap-8 text-center"
+        class="col-span-7 mx-auto flex w-full flex-col items-center justify-center gap-2 md:gap-8 text-center"
       >
         <div class="divider px-10 md:px-80"></div>
         <div
-          class="mx-auto flex items-center justify-center gap-4 text-center text-4xl font-bold"
+          class="mx-auto flex items-center justify-center gap-4 text-center text-3xl font-bold mb-4"
         >
-          Personal Projects
+          Destacable Projects
           <Icon
             name="streamline-emojis:rocket"
             class="max-md:hidden md:h-12 md:w-12"
           />
         </div>
-        <div class="flex flex-wrap justify-center gap-8">
-          <CardPost />
-          <CardPost />
-          <CardPost />
-          <CardPost />
-          <CardPost />
+        <div
+          class="grid xl:grid-cols-2 *:w-auto! *:col-span-1 justify-between gap-5 px-3"
+        >
+          <CardProject
+            title="Astro-AleRaptor"
+            summary="A personal website built with Astro."
+            url="https://github.com/alehdezp/astro-aleraptor"
+            descriptionList={[
+              "This website is built with Astro and TailwindCSS.",
+              "It features a blog section with a custom blog post page.",
+              "The blog posts are sorted by date and displayed in a timeline format.",
+              "The website also includes a portfolio section with a custom project page.",
+              "The projects are displayed in a grid format with a card layout.",
+            ]}
+            tags={["Astro", "TailwindCSS", "Markdown"]}
+          />
         </div>
-
         <div class="divider px-10 md:px-80"></div>
         <div
-          class="mx-auto flex items-center justify-center gap-4 text-center text-4xl font-bold"
+          class="mx-auto flex items-center justify-center gap-4 text-center text-3xl font-bold mb-4"
         >
-          My Latest Blog Posts
+          Highlighted Blog Posts
           <Icon
             name="streamline:curly-brackets-solid"
             class="max-md:hidden md:h-12 md:w-12"
           />
         </div>
-        <div class="flex flex-wrap justify-center gap-8"></div>
+        <div class="flex flex-wrap justify-center gap-8 lg:px-5 px-3 text-left">
+          <BlogPreview post={page.data[0]} />
+          <BlogPreview post={page.data[1]} />
+          <BlogPreview post={page.data[2]} />
+        </div>
       </div>
+      <style>
+        main {
+          margin: auto;
+          width: 100%;
+        }
+      </style>
     </div>
-    <style>
-      main {
-        margin: auto;
-        width: 100%;
-      }
-    </style>
   </div>
 </Layout>

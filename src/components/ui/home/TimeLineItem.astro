@@ -23,7 +23,7 @@ const {
   descriptionList: list = [],
   responsibilities = [],
   tags = [],
-  collapsedHeight = 90 // Default collapsed height
+  collapsedHeight = 50 // Default collapsed height
 } = Astro.props as Props;
 
 const uniqueId = `timeline-item-${Math.random().toString(36).substring(2, 11)}`;
@@ -50,7 +50,7 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
     <!-- Header with time and title -->
     <div class="mb-2">
       <time class="font-mono italic text-base-content">{time}</time>
-      <div class="text-lg font-bold text-primary">{title}</div>
+      <div class="text-lg font-bold text-primary mt-2">{title}</div>
     </div>
 
     <!-- Summary section -->
@@ -58,12 +58,12 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
 
     <!-- Content sections with expandable container -->
     {hasDetails && (
-      <div class="timeline-expand-container" id={uniqueId} data-collapsed="true">
+      <div class="timeline-expand-container" id={uniqueId} data-collapsed="true" data-needs-expansion="true">
         <!-- Content with gradient overlay -->
         <div class="timeline-content" style={`--collapsed-height: ${collapsedHeight}px;`}>
           <!-- Description section -->
           {list.length > 0 && (
-            <div class="mb-4">
+            <div class="">
               <h4 class="font-medium text-secondary mb-1">Description</h4>
               <ul class="list-disc list-inside pl-2 text-base-content/80">
                 {list.map((item: string) => <li set:html={item} />)}
@@ -73,7 +73,7 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
 
           <!-- Responsibilities section -->
           {responsibilities.length > 0 && (
-            <div class="mb-3">
+            <div class="">
               <h4 class="font-medium text-accent mb-1">Responsibilities</h4>
               <ul class="list-disc list-inside pl-2 text-base-content/80">
                 {responsibilities.map((item: string) => <li set:html={item} />)}
@@ -82,27 +82,28 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
           )}
 
           <!-- Fade overlay at the bottom of content -->
-          <div class="timeline-fade"></div>
+          <div class="timeline-fade  rounded-3xl bg-gradient-to-t from-base-100/90 to-transparent"></div>
         </div>
 
+      <div class="flex gap-6">
         <!-- Expand/Collapse button -->
         <button class="timeline-toggle-btn">
-          <span class="timeline-toggle-text">Show more</span>
+          <span class="text-sm text-base-content/70 ml-2 ">Show more</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="timeline-toggle-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
-      </div>
-    )}
-
     <!-- Tags Section -->
     {tags.length > 0 && (
-      <div class="flex flex-wrap gap-1 mt-3">
+      <div class="flex flex-wrap gap-2 mt-3">
         {tags.map((tag: Tag) => (
-          <span class={`badge badge-sm ${tag.color || 'badge-neutral'}`}>
+          <span class={`badge badge-sm badge-soft ${tag.color || 'badge-accent'}`}>
             {tag.label}
           </span>
         ))}
+      </div>
+    )}</div>
+
       </div>
     )}
   </div>
@@ -121,22 +122,20 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
   .timeline-content {
     position: relative;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    transition: max-height 0.2s ease-out;
     max-height: var(--collapsed-height);
   }
 
-  /* Basic fade overlay with fallback colors */
-  .timeline-fade {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background: linear-gradient(to top, white, transparent);
-    opacity: 0.8;
-    pointer-events: none;
-  }
-  
+.timeline-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 3px;
+  height: 45px; /* Much taller for dramatic effect */
+  opacity: 1;
+  z-index: 5; /* Higher z-index to ensure prominence */
+}
+
   /* Dark theme fade overlay */
   [data-theme="night"] .timeline-fade,
   [data-theme="dark"] .timeline-fade,
@@ -144,8 +143,8 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
   [data-theme="forest"] .timeline-fade,
   [data-theme="black"] .timeline-fade,
   [data-theme="abyss"] .timeline-fade {
-    background: linear-gradient(to top, #1a1a2e, transparent);
-    opacity: 0.8;
+    background: linear-gradient(to top, var(--b1, #1f2937) 20%, transparent);
+    opacity: 0.25;
   }
 
   /* Toggle button styling */
@@ -154,13 +153,10 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
     align-items: center;
     gap: 0.25rem;
     margin-top: 0.5rem;
-    color: var(--p, hsl(259, 94%, 51%)); /* Primary color */
-    font-size: 0.75rem;
     cursor: pointer;
-    background: none;
-    border: none;
-    outline: none;
     padding: 0;
+    position: relative;
+    z-index: 5; /* Ensure button is above fade */
   }
 
   .timeline-toggle-icon {
@@ -181,24 +177,35 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
   .timeline-expand-container[data-collapsed="false"] .timeline-toggle-icon {
     transform: rotate(180deg);
   }
+
+  /* Hide button and fade when expansion isn't needed */
+  .timeline-expand-container[data-needs-expansion="false"] .timeline-toggle-btn,
+  .timeline-expand-container[data-needs-expansion="false"] .timeline-fade {
+    display: none;
+  }
 </style>
 
 <script is:inline>
-  // Simple theme-compatible timeline script
+  // Simplified timeline script with auto-detection
   (function() {
     function setupTimelineItems() {
-      // Get all timeline containers
+      // Process all timeline containers
       document.querySelectorAll('.timeline-expand-container').forEach(container => {
+        const content = container.querySelector('.timeline-content');
         const toggleBtn = container.querySelector('.timeline-toggle-btn');
-        const toggleText = container.querySelector('.timeline-toggle-text');
 
-        if (!toggleBtn) return;
+        // Skip if elements are missing
+        if (!content || !toggleBtn) return;
 
-        // Remove old listeners
+        // Check if content height exceeds collapsed height to determine if expansion is needed
+        const needsExpansion = content.scrollHeight > content.clientHeight;
+        container.setAttribute('data-needs-expansion', needsExpansion.toString());
+
+        // Remove old listeners by cloning button
         const newBtn = toggleBtn.cloneNode(true);
         toggleBtn.parentNode?.replaceChild(newBtn, toggleBtn);
 
-        // Add new click listener
+        // Setup new click listener
         newBtn.addEventListener('click', () => {
           const isCollapsed = container.getAttribute('data-collapsed') === 'true';
           container.setAttribute('data-collapsed', isCollapsed ? 'false' : 'true');
@@ -212,17 +219,23 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
       });
     }
 
-    // Run on page load and after transitions
-    setupTimelineItems();
-    document.addEventListener('astro:page-load', setupTimelineItems);
-    document.addEventListener('astro:after-swap', setupTimelineItems);
+    // Setup handlers for initial load and transitions
+    function init() {
+      // Small delay to ensure content has rendered properly
+      setTimeout(setupTimelineItems, 50);
+    }
+
+    // Run on various page lifecycle events
+    window.addEventListener('DOMContentLoaded', init);
+    window.addEventListener('load', init);
+    document.addEventListener('astro:page-load', init);
+    document.addEventListener('astro:after-swap', init);
+
+    // Also handle window resize events
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(setupTimelineItems, 100);
+    });
   })();
 </script>
-
-<style>
-  /* Hide button and fade when not needed */
-  .expand-container[data-needs-expansion="false"] .button-container,
-  .expand-container[data-needs-expansion="false"] .fade-overlay {
-    display: none;
-  }
-</style>

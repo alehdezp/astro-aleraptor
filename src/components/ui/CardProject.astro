@@ -1,15 +1,42 @@
-<div class="card bg-base-100 image-full w-auto shadow-sm">
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes"
-    />
-  </figure>
-  <a href="/blog" class="card-body">
-    <h2 class="card-title">Card Title</h2>
-    <p>How to create a project using Astro and Deno 🚀 with DaisyUI</p>
-    <!-- <div class="card-actions justify-end"> -->
-    <!--   <button class="btn btn-primary"> Now</button> -->
-    <!-- </div> -->
+---
+import PostTags from "./blog/PostTags.astro";
+
+interface Props {
+  title: string;
+  summary: string;
+  url: string;
+  descriptionList: string[];
+  tags: string[];
+}
+
+const { title, summary, url, descriptionList, tags } = Astro.props as Props;
+---
+
+<article
+  class="group/card col-span-1 md:w-90 h-fit lg:w-100 lg:h-130 md:h-150 block text-left w-full rounded-xl bg-base-200 shadow-md border border-gray-700 transition-all duration-200 shadow-gray-700/30 hover:shadow-xl hover:shadow-primary-500/20"
+>
+  <a href={url} class="block sm:p-8 p-6 h-full">
+    <div class="flex flex-col h-full mb-3">
+      <div class="flex-1">
+        <h2 class="text-xl sm:text-2xl font-black sm:mb-4 mb-2">
+          {title}
+        </h2>
+        <h3 class="text-lg mb-2">{summary}</h3>
+        {
+          descriptionList.length > 0 && (
+            <div class="">
+              <ul class="list-disc list-inside pl-3 text-base-content/80">
+                {descriptionList.map((item: string) => (
+                  <li set:html={item} />
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </div>
+      <div class="flex justify-start items-center sm:gap-4 mt-auto">
+        {tags && <PostTags tags={tags} />}
+      </div>
+    </div>
   </a>
-</div>
+</article>

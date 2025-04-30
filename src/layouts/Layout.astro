@@ -20,17 +20,20 @@ import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
     <title>Astro-AleRaptor</title>
-    
+
     <!-- Simple theme initialization -->
     <script is:inline>
-      (function() {
-        const savedTheme = localStorage.getItem('theme') || 
-          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'sunset');
-        document.documentElement.setAttribute('data-theme', savedTheme);
+      (function () {
+        const savedTheme =
+          localStorage.getItem("theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "night"
+            : "sunset");
+        document.documentElement.setAttribute("data-theme", savedTheme);
       })();
     </script>
   </head>
-  <body class="relative w-full h-screen">
+  <body class="relative w-full h-screen bg-base-200">
     <ThemeSwitch />
     <div class={"bg-base-100 drawer lg:drawer-open max-lg:drawer-end"}>
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
@@ -74,10 +77,10 @@ import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
         <!--   class="p-8 pt-10 lg:pt-16 lg:max-w-5xl max-w-full mx-auto min-h-screen flex flex-col justify-between" -->
         <!-- > -->
         <!-- <main transition:animate={fade({ duration: ".18s" })}> -->
-        <main class="flex flex-col justify-between">
+        <main class="flex flex-col justify-between h-full">
           <!-- Page content -->
           <slot />
-          
+
           <script>
             document.addEventListener("astro:after-swap", () => {
               // Re-apply theme after View Transition

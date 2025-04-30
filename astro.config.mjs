@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig } from "astro/config";
 import deno from "@deno/astro-adapter";
 import mdx from "@astrojs/mdx";
@@ -9,7 +8,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 
 import { siteConfig } from "./src/config";
 
-// @ts-ignore
+// @ts-expected-error
 export default defineConfig({
   site: siteConfig.site,
   output: "server",
