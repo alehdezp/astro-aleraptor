@@ -15,7 +15,7 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  site: "https://dinospacedive.com/", // TODO T
+  site: "https://dinospacedive.com/",
   title: "Dino Space Dive",
   slogan: "Dino Space Dive",
   description: "Welcome to my personal website",
@@ -32,6 +32,5 @@ export const siteConfig: SiteConfig = {
   // },
   googleAnalysis: "", // your google analysis id
   search: true, // set this to false if you don't want to provide a search feature
-  base: process.env.NODE_ENV === "production" ? "/astro-aleraptor" : "/",
 };
 // <reference types="astro/client" />
