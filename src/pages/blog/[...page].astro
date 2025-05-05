@@ -6,60 +6,15 @@ import Pagination from "@components/ui/blog/Pagination.astro";
 import { getCollection } from "astro:content";
 import { filterPublishedPosts, sortPostsByDate } from "@utils/posts";
 
-// Get all posts and process them
-let page: {
-  data: any[];
-  start: number;
-  end: number;
-  total: number;
-  currentPage: number;
-  size: number;
-  lastPage: number;
-} = {
-  data: [],
-  start: 0,
-  end: 0,
-  total: 0,
-  currentPage: 1,
-  size: 10,
-  lastPage: 1,
-};
-
-try {
-  // Get the current page from the URL or default to 1
-  const currentPage = Astro.params.page ? parseInt(Astro.params.page) : 1;
-  const pageSize = 10;
-
-  // Get all blog posts
-  const allPosts = await getCollection("blog");
-  const publishedPosts = filterPublishedPosts(allPosts);
+export async function getStaticPaths({ paginate }) {
+  const posts = await getCollection("blog");
+  const publishedPosts = filterPublishedPosts(posts);
   const sortedPosts = sortPostsByDate(publishedPosts);
 
-  // Calculate pagination values
-  const totalPosts = sortedPosts.length;
-  const lastPage = Math.max(1, Math.ceil(totalPosts / pageSize));
-  const currentPageAdjusted = Math.min(currentPage, lastPage);
-
-  // Calculate start and end indices
-  const start = (currentPageAdjusted - 1) * pageSize;
-  const end = Math.min(start + pageSize, totalPosts);
-
-  // Get posts for current page
-  const pagePosts = sortedPosts.slice(start, end);
-
-  // Create the page object that matches Astro's pagination format
-  page = {
-    data: pagePosts,
-    start,
-    end,
-    total: totalPosts,
-    currentPage: currentPageAdjusted,
-    size: pageSize,
-    lastPage,
-  };
-} catch (error) {
-  console.error("Error loading blog posts for pagination:", error);
+  return paginate(sortedPosts, { pageSize: 10 });
 }
+
+const { page } = Astro.props;
 ---
 
 <Layout title="Blog Posts">

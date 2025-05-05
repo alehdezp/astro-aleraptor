@@ -3,28 +3,16 @@ import { getCollection } from "astro:content";
 import BlogPost from "@layouts/BlogPost.astro";
 import Layout from "@layouts/Layout.astro";
 
-// Force Astro to use SSR for this page since we're using a Deno adapter with server output
-// export const prerender = false;
-
-// Get the post data from the slug
-const { slug } = Astro.params;
-let post;
-let Content;
-
-try {
-  // Get all blog posts
-  const allPosts = await getCollection("blog");
-  // Find the post with matching slug
-  post = allPosts.find((p) => p.slug === slug);
-
-  if (post) {
-    // Only try to render if we found a post
-    const rendered = await post.render();
-    Content = rendered.Content;
-  }
-} catch (error) {
-  console.error("Error loading blog post:", error);
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
+
+const { post } = Astro.props;
+const { Content } = await post.render();
 ---
 
 {
