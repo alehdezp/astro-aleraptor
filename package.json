@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "astro": "astro",
-    "preview": "node dist/server/entry.mjs",
+    "preview": "astro build && astro preview",
     "new-post": "node scripts/add-post.js"
   },
   "dependencies": {
