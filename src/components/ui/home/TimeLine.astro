@@ -1,80 +1,121 @@
 ---
 import TimeLineItem from "./TimeLineItem.astro";
+
+const labelColor = [
+  "badge-primary",
+  "badge-secondary",
+  "badge-info",
+  "badge-success",
+  "badge-warning",
+  "badge-accent",
+];
 ---
 
 <ul
-  class="timeline timeline-vertical timeline-compact mt-5 max-w-200 timeline-snap-icon"
+  class="timeline timeline-vertical timeline-compact mt-5 mx-2 max-w-200 timeline-snap-icon"
 >
   <TimeLineItem
     position="start"
-    time="2021 - Present (4~ years)"
-    title="Mid Cyber Security Analyst at Hexod and Salesforce"
-    summary="Worked as a Cyber Security Analyst specialising in bug bounty triage: vulnerability assessment, triage and remediation for Salesforce enterprise applications."
+    time="2021 - Present (4+ years)"
+    title="Salesforce Security Vulnerability Analyst (via Hexod)"
+    summary="Cybersecurity Analyst focusing on vulnerability triage, impact analysis, and remediation coordination within Salesforce, Mulesoft, Slack, Heroku and Tableau enterprise environments."
     responsibilities={[
-      "Analyze and triage security vulnerabilities to determine risk level and remediation priority",
-      "Conduct vulnerability assessments and collaborate with development teams on security fixes",
-      "Automation and scripting for security testing and time-consuming tasks to improve efficiency using Python, Bash and Javascript to develop Chrome Web Extensions",
+      "Validate and reproduce incoming bug bounty reports across the entire Salesforce ecosystem (including: MuleSoft, Slack, Heroku, Tableau), classify risk (CVSS and Salesforce standards) and assess business impact before escalating.",
+      "Prioritize and route verified issues to the right teams, track remediation status and confirm fixes have been applied.",
+      "Maintain positive researcher relations: request clarifications, guide reproductions and close the feedback loop.",
+      "Communicate technical issues clearly to engineers to ensure accurate understanding and prompt remediation.",
+      "Built Python/Bash scripts to automate bug intake, report formatting and CVSS scoring on our triage platform.",
+      "Developed Chrome and Burp Suite extensions to automate and accelerate the team's ability to triage and verify Salesforce vulnerabilities.",
+      "Implemented tooling that integrate with Salesforce vulnerability tracking system to automatically log vulnerability data and trigger alerts for overdue remediations.",
     ]}
     tags={[
-      { label: "triage", color: "badge-primary" },
-      { label: "web-security", color: "badge-secondary" },
-      { label: "automation", color: "badge-accent" },
-      { label: "python3", color: "badge-accent" },
-      { label: "web-extensions", color: "badge-accent" },
+      { label: "bug-bounty", color: labelColor[0] },
+      { label: "owasp-top10", color: labelColor[2] },
+      { label: "triage", color: labelColor[1] },
+      { label: "vulnerability-management", color: labelColor[2] },
+      { label: "automation", color: labelColor[1] },
+      { label: "python3", color: labelColor[0] },
+      { label: "bash", color: labelColor[1] },
     ]}
+    collapsedHeight={140}
   />
+
   <TimeLineItem
     position="middle"
-    time="2019-2021"
-    title="Cybersecurity training and OSCP"
-    summary="Focused on intensive cybersecurity training and earned the OSCP certification, building a strong foundation in offensive security techniques and defensive strategies."
+    time="2019–2021"
+    title="Cybersecurity Training & OSCP Certification"
+    summary="Dedicated time to deepening my expertise in ethical hacking, web application security, and penetration testing through hands-on labs and structured learning."
     descriptionList={[
-      "Began my journey in cybersecurity, focusing on understanding offensive security concepts and defense mechanisms.",
-      "Expanded knowledge of web application vulnerabilities, OWASP Top 10 and common security issues through self-study and practical exercises.",
-      "Pursued training in ethical hacking and gained experience with penetration testing methodologies.",
-      'Successfully completed the <span class="badge badge-soft mb-1 p-1"> OSCP </span> (Offensive Security Certified Professional) certification, validating my practical cybersecurity skills.',
+      "Self-paced security training: web app hacking, network exploitation, reverse engineering and social-engineering basics.",
+      "Completed the OSCP certification, demonstrating hands-on skills in network penetration testing and exploit development .",
+      "Practiced real-world exploitation using labs like Hack The Box, TryHackMe, and custom CTF environments.",
+      "Gained familiarity with tools such as Burp Suite, ffuf/gobuster, advanced Nmap, Metasploit and Wireshark",
+      "Developed custom scripts for vulnerability scanning and exploitation proof-of-concepts (Python, Bash).",
     ]}
     tags={[
-      { label: "OSCP", color: "badge-error" },
-      { label: "ethical hacking", color: "badge-info" },
-      { label: "web security", color: "badge-warning" },
+      { label: "OSCP", color: labelColor[0] },
+      { label: "bash-scripting", color: labelColor[1] },
+      { label: "python3", color: labelColor[2] },
+      { label: "penetration-testing", color: labelColor[1] },
+      { label: "privilege-escalation", color: labelColor[2] },
+      { label: "active-directory", color: labelColor[1] },
+      { label: "metasploit", color: labelColor[0] },
+      { label: "burp-suite", color: labelColor[2] },
+      { label: "nmap", color: labelColor[1] },
+      { label: "ffuf", color: labelColor[0] },
+      { label: "gobuster", color: labelColor[1] },
     ]}
+    collapsedHeight={120}
   />
+
   <TimeLineItem
     position="middle"
     time="2018 (4 months)"
-    title="Full Stack Developer at Itop Consulting"
-    summary="Short-term role developing full-stack web and mobile applications for enterprise clients, focusing on secure and scalable solutions."
+    title="Full Stack Developer – Itop Consulting"
+    summary="Worked on short-term client projects to deliver secure, scalable web and mobile applications using modern frameworks."
     responsibilities={[
-      "Designed and implemented secure web applications using modern JavaScript frameworks",
-      "Developed RESTful APIs and integrated authentication systems",
-      "Built and deployed cross-platform mobile applications",
+      "Developed full-stack applications with the MEAN stack, focusing on code quality and security",
+      "Built RESTful APIs and implemented robust authentication with JWT",
+      "Created mobile apps using Xamarin.Forms and .NET",
     ]}
     descriptionList={[
-      "Developed secure, scalable web apps with the MEAN stack (MongoDB, Express, Angular, Node.js), integrating REST APIs and JWT authentication.",
-      "Built cross-platform mobile apps using Xamarin.Forms and .NET MAUI",
+      "Gained practical experience building enterprise-grade web solutions, ensuring both functionality and security",
     ]}
     tags={[
-      { label: "MEAN stack", color: "badge-primary" },
-      { label: "xamarin", color: "badge-secondary" },
-      { label: "mobile dev", color: "badge-success" },
+      { label: "MEAN stack", color: labelColor[0] },
+      { label: "agile-development", color: labelColor[2] },
+      { label: "xamarin", color: labelColor[1] },
+      { label: "mobile-app-development", color: labelColor[1] },
     ]}
+    collapsedHeight={30}
   />
   <TimeLineItem
     position="end"
-    time="2014-2019"
-    title="Bachelor’s Degree in Computer Engineering"
-    summary="Completed comprehensive computer science education covering programming fundamentals, software engineering principles, and practical application development."
+    time="2014–2019"
+    title="Bachelor's Degree in Computer Engineering"
+    summary="Comprehensive education in software development, systems engineering, and al fundamentals."
     descriptionList={[
-      "Proficient in development using C, C++, Java, Python, and JavaScript.",
-      "Applied OOP, SOLID principles, and modern design patterns (MVC, MVVM).",
-      "Bachelor's Thesis: Developed an Android app using Java and Android Studio.",
+      "Thesis Project: The development of an Android application incorporating augmented reality (AR) and geolocation functionality has been conducted for the purpose of assisting users in navigating the campus.",
+      "Advanced Algorithms & Data Structures: Solved complex problems using graph theory and dynamic programming",
+      "Developed Java applications using OOP principles and design patterns (MVC/MVVM) in Software Engineering courses",
+      "Implemented network protocols and analyzed packet traffic in Computer Networks courses",
+      "Configured secure Linux environments in Operating Systems labs",
+      "Mastered C/C++ through low-level programming and memory management projects in Advanced Algorithms & Data Structures courses",
+      "Studied encryption algorithms, PKI infrastructure, and security protocols in Computer System Security",
+      "Formal Languages & Compilers: Built lexical analyzers and parsers",
+      "SQL: Designed and implemented advanced database schemas, queries, and transactions in Orable Databases in Database course",
     ]}
     tags={[
-      { label: "C/C++", color: "badge-error" },
-      { label: "Java", color: "badge-secondary" },
-      { label: "Python", color: "badge-accent" },
-      { label: "BSc", color: "badge-info" },
+      { label: "C/C++", color: labelColor[0] },
+      { label: "Java", color: labelColor[1] },
+      { label: "Python", color: labelColor[2] },
+      { label: "Linux", color: labelColor[0] },
+      { label: "OOP", color: labelColor[1] },
+      { label: "MVC", color: labelColor[0] },
+      { label: "Algorithms", color: labelColor[1] },
+      { label: "Networking", color: labelColor[2] },
+      { label: "SQL", color: labelColor[0] },
+      { label: "BSc", color: labelColor[2] },
     ]}
   />
 </ul>

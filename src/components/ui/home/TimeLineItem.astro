@@ -3,9 +3,10 @@ interface Tag {
   label: string;
   color?: string;
 }
+import Oscp from "@assets/oscp.svg";
 
 interface Props {
-  position: 'start' | 'middle' | 'end';
+  position: "start" | "middle" | "end";
   time: string;
   title: string;
   summary?: string;
@@ -23,7 +24,7 @@ const {
   descriptionList: list = [],
   responsibilities = [],
   tags = [],
-  collapsedHeight = 50 // Default collapsed height
+  collapsedHeight = 50, // Default collapsed height
 } = Astro.props as Props;
 
 const uniqueId = `timeline-item-${Math.random().toString(36).substring(2, 11)}`;
@@ -47,65 +48,90 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
   </div>
 
   <div class="timeline-end ml-4 mb-5 md:text-start">
-    <!-- Header with time and title -->
     <div class="mb-2">
       <time class="font-mono italic text-base-content">{time}</time>
-      <div class="text-lg font-bold text-primary mt-2">{title}</div>
+      <div class="flex text-lg font-bold text-primary mt-3 items-center gap-2">
+        {title}
+        {title.includes("OSCP") && <Oscp width="20" height="20" />}
+      </div>
     </div>
 
-    <!-- Summary section -->
-    {summary && <p class="text-base-content/80 mb-3">{summary}</p>}
+    {summary && <p class="text-base-content/80 mb-2">{summary}</p>}
 
-    <!-- Content sections with expandable container -->
-    {hasDetails && (
-      <div class="timeline-expand-container" id={uniqueId} data-collapsed="true" data-needs-expansion="true">
-        <!-- Content with gradient overlay -->
-        <div class="timeline-content" style={`--collapsed-height: ${collapsedHeight}px;`}>
-          <!-- Description section -->
-          {list.length > 0 && (
-            <div class="">
-              <h4 class="font-medium text-secondary mb-1">Description</h4>
-              <ul class="list-disc list-inside pl-2 text-base-content/80">
-                {list.map((item: string) => <li set:html={item} />)}
-              </ul>
-            </div>
-          )}
+    {
+      hasDetails && (
+        <div
+          class="timeline-expand-container"
+          id={uniqueId}
+          data-collapsed="true"
+          data-needs-expansion="true"
+        >
+          <div
+            class="timeline-content"
+            style={`--collapsed-height: ${collapsedHeight}px;`}
+          >
+            {list.length > 0 && (
+              <div class="">
+                <h4 class="font-medium text-secondary mb-1">Description</h4>
+                <ul class="list-disc list-inside pl-2 text-base-content/80">
+                  {list.map((item: string) => (
+                    <li set:html={item} />
+                  ))}
+                </ul>
+              </div>
+            )}
 
-          <!-- Responsibilities section -->
-          {responsibilities.length > 0 && (
-            <div class="">
-              <h4 class="font-medium text-accent mb-1">Responsibilities</h4>
-              <ul class="list-disc list-inside pl-2 text-base-content/80">
-                {responsibilities.map((item: string) => <li set:html={item} />)}
-              </ul>
-            </div>
-          )}
+            {responsibilities.length > 0 && (
+              <div class="">
+                <h4 class="text-secondary font-medium text-neutral-content mb-1">
+                  Responsibilities
+                </h4>
+                <ul class="list-disc list-inside pl-2 text-base-content/80">
+                  {responsibilities.map((item: string) => (
+                    <li set:html={item} />
+                  ))}
+                </ul>
+              </div>
+            )}
 
-          <!-- Fade overlay at the bottom of content -->
-          <div class="timeline-fade  rounded-3xl bg-gradient-to-t from-base-100/90 to-transparent"></div>
+            <div class="timeline-fade  rounded-3xl bg-gradient-to-t from-base-100/90 to-transparent" />
+          </div>
+
+          <div class="flex gap-2 items-center">
+            <button class="timeline-toggle-btn items-center ">
+              <span class="text-sm text-base-content/70 ml-2 mt-1 ">
+                Show more
+              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="timeline-toggle-icon mt-1.5"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            {tags.length > 0 && (
+              <div class="flex flex-wrap gap-2 mt-3">
+                {tags.map((tag: Tag) => (
+                  <span
+                    class={`badge badge-sm badge-soft px-2 ${tag.color || "badge-accent"} drop-shadow-xs drop-shadow-current/13`}
+                  >
+                    {tag.label}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-
-      <div class="flex gap-6">
-        <!-- Expand/Collapse button -->
-        <button class="timeline-toggle-btn">
-          <span class="text-sm text-base-content/70 ml-2 ">Show more</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="timeline-toggle-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
-    <!-- Tags Section -->
-    {tags.length > 0 && (
-      <div class="flex flex-wrap gap-2 mt-3">
-        {tags.map((tag: Tag) => (
-          <span class={`badge badge-sm badge-soft ${tag.color || 'badge-accent'}`}>
-            {tag.label}
-          </span>
-        ))}
-      </div>
-    )}</div>
-
-      </div>
-    )}
+      )
+    }
   </div>
 
   {(position === "start" || position === "middle") && <hr />}
@@ -126,15 +152,15 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
     max-height: var(--collapsed-height);
   }
 
-.timeline-fade {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 3px;
-  height: 45px; /* Much taller for dramatic effect */
-  opacity: 1;
-  z-index: 5; /* Higher z-index to ensure prominence */
-}
+  .timeline-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 3px;
+    height: 45px; /* Much taller for dramatic effect */
+    opacity: 1;
+    z-index: 5; /* Higher z-index to ensure prominence */
+  }
 
   /* Dark theme fade overlay */
   [data-theme="night"] .timeline-fade,
@@ -187,36 +213,45 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
 
 <script is:inline>
   // Simplified timeline script with auto-detection
-  (function() {
+  (function () {
     function setupTimelineItems() {
       // Process all timeline containers
-      document.querySelectorAll('.timeline-expand-container').forEach(container => {
-        const content = container.querySelector('.timeline-content');
-        const toggleBtn = container.querySelector('.timeline-toggle-btn');
+      document
+        .querySelectorAll(".timeline-expand-container")
+        .forEach((container) => {
+          const content = container.querySelector(".timeline-content");
+          const toggleBtn = container.querySelector(".timeline-toggle-btn");
 
-        // Skip if elements are missing
-        if (!content || !toggleBtn) return;
+          // Skip if elements are missing
+          if (!content || !toggleBtn) return;
 
-        // Check if content height exceeds collapsed height to determine if expansion is needed
-        const needsExpansion = content.scrollHeight > content.clientHeight;
-        container.setAttribute('data-needs-expansion', needsExpansion.toString());
+          // Check if content height exceeds collapsed height to determine if expansion is needed
+          const needsExpansion = content.scrollHeight > content.clientHeight;
+          container.setAttribute(
+            "data-needs-expansion",
+            needsExpansion.toString(),
+          );
 
-        // Remove old listeners by cloning button
-        const newBtn = toggleBtn.cloneNode(true);
-        toggleBtn.parentNode?.replaceChild(newBtn, toggleBtn);
+          // Remove old listeners by cloning button
+          const newBtn = toggleBtn.cloneNode(true);
+          toggleBtn.parentNode?.replaceChild(newBtn, toggleBtn);
 
-        // Setup new click listener
-        newBtn.addEventListener('click', () => {
-          const isCollapsed = container.getAttribute('data-collapsed') === 'true';
-          container.setAttribute('data-collapsed', isCollapsed ? 'false' : 'true');
+          // Setup new click listener
+          newBtn.addEventListener("click", () => {
+            const isCollapsed =
+              container.getAttribute("data-collapsed") === "true";
+            container.setAttribute(
+              "data-collapsed",
+              isCollapsed ? "false" : "true",
+            );
 
-          // Update button text
-          const textEl = container.querySelector('.timeline-toggle-text');
-          if (textEl) {
-            textEl.textContent = isCollapsed ? 'Show less' : 'Show more';
-          }
+            // Update button text
+            const textEl = container.querySelector(".timeline-toggle-text");
+            if (textEl) {
+              textEl.textContent = isCollapsed ? "Show less" : "Show more";
+            }
+          });
         });
-      });
     }
 
     // Setup handlers for initial load and transitions
@@ -226,14 +261,14 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
     }
 
     // Run on various page lifecycle events
-    window.addEventListener('DOMContentLoaded', init);
-    window.addEventListener('load', init);
-    document.addEventListener('astro:page-load', init);
-    document.addEventListener('astro:after-swap', init);
+    window.addEventListener("DOMContentLoaded", init);
+    window.addEventListener("load", init);
+    document.addEventListener("astro:page-load", init);
+    document.addEventListener("astro:after-swap", init);
 
     // Also handle window resize events
     let resizeTimer;
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(setupTimelineItems, 100);
     });

@@ -1,6 +1,9 @@
 ---
 import PresentationItemList from "@components/ui/home/PresentationItemList.astro";
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import logo from "@assets/logo.png";
+import { siteConfig } from "@/config.js";
 
 import BadgePresentation from "@components/ui/home/Badge-Presentation.astro";
 const { class: className = "" } = Astro.props;
@@ -8,41 +11,19 @@ const { class: className = "" } = Astro.props;
 
 <!-- <div --><!--   class="grid 2xl:col-span-1 lg:col-span-2 col-span-4 place-items-center gap-5 card-basic h-fit md:w-105 w-auto mx-auto glass" --><!-- > -->
 <div class={className}>
-  <img
-    src="logo.png"
+  <Image
+    src={logo}
     alt="Astro Logo"
-    width="300"
-    height="300"
-    class="rounded-2xl border-2 border-secondary"
+    width="500"
+    height="800"
+    class="rounded-full border-1 border-accent w-full bg-gradient-to-bl from-primary to-secondary"
   />
   <h1 class="text-center text-3xl font-bold text-gray-50">
     Alejandro Hernández Padron
   </h1>
 
-  <ul
-    class="flex space-x-4 *:w-11 *:rounded-xl *:p-2 *:bg-base-100 text-gray-50!"
-  >
-    <li class="">
-      <a href="https://github.com/alehdezp" target="_blank">
-        <Icon name="mdi:github" class="h-full w-full" />
-      </a>
-    </li>
-    <li class="">
-      <a
-        href="https://www.linkedin.com/in/alejandro-hernandez-padron"
-        target="_blank"
-      >
-        <Icon name="mdi:linkedin" class="h-full w-full" />
-      </a>
-    </li>
-    <li class="">
-      <a href="https://github.com/alehdezp" target="_blank">
-        <Icon name="mdi:twitter" class="h-full w-full" />
-      </a>
-    </li>
-  </ul>
   <div
-    class="flex flex-wrap justify-center space-y-2 space-x-2 *:items-center *:text-center"
+    class="flex flex-wrap justify-center space-y-2 space-x-2 *:items-center *:text-center *:shadow-current/20 *:shadow-xs"
   >
     <BadgePresentation class="badge-primary" name="AppSec" />
     <BadgePresentation class="badge-secondary" name="Ethical Hacker" />
@@ -50,11 +31,39 @@ const { class: className = "" } = Astro.props;
     <BadgePresentation class="badge-success" name="Secure Code Reviewer" />
   </div>
   <ul
-    class="grid w-auto xl:mx-2 grid-cols-1 rounded-xl bg-base-100 px-4 py-4 xl:px-5 xl:py-5"
+    class="flex space-x-4 *:w-11 *:rounded-xl *:p-2 text-gray-50! drop-shadow-lg drop-shadow-black"
+  >
+    <li
+      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-102"
+    >
+      <a href="https://github.com/alehdezp" target="_blank">
+        <Icon name="mdi:github" class="h-full w-full" />
+      </a>
+    </li>
+    <li
+      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-102"
+    >
+      <a
+        href="https://www.linkedin.com/in/alejandro-hernandez-padron"
+        target="_blank"
+      >
+        <Icon name="mdi:linkedin" class="h-full w-full" />
+      </a>
+    </li>
+    <li
+      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-102"
+    >
+      <a href="https://github.com/alehdezp" target="_blank">
+        <Icon name="mdi:twitter" class="h-full w-full" />
+      </a>
+    </li>
+  </ul>
+  <ul
+    class="grid w-auto xl:mx-2 grid-cols-1 rounded-xl bg-base-100 px-4 py-5 xl:px-5 xl:py-7"
   >
     <PresentationItemList
       field_name="Email"
-      value="alehdezp8@gmail.com"
+      value={siteConfig.social.email}
       icon="mdi:email"
       divider="true"
     />
