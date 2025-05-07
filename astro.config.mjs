@@ -18,7 +18,6 @@ export default defineConfig({
   },
 
   integrations: [icon(), mdx(), sitemap()],
-
   markdown: {
     rehypePlugins: [
       [
@@ -37,3 +36,4 @@ export default defineConfig({
 
   adapter: vercel(),
 });
+
