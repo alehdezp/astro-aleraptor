@@ -5,6 +5,7 @@ import SearchBox from "@components/ui/blog/SearchBox.astro";
 import Pagination from "@components/ui/blog/Pagination.astro";
 import { getCollection } from "astro:content";
 import { filterPublishedPosts, sortPostsByDate } from "@utils/posts";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths({ paginate }) {
   const posts = await getCollection("blog");
@@ -18,12 +19,15 @@ const { page } = Astro.props;
 ---
 
 <Layout title="Blog Posts">
-  <div class="mx-4 sm:mx-auto lg:mt-28 w-200 mb-20">
+  <div class="mx-4 sm:mx-auto lg:mt-28 lg:w-200 w-auto mb-20">
     <div class="flex justify-between items-center ml-2 mb-16">
       <h1 class="text-4xl font-bold text-gray-900 dark:text-white">
         Blog Posts
       </h1>
-      <SearchBox />
+      <div class="flex items-center gap-8">
+        <Icon id="hashtag" name="mdi:hashtag" class="w-6 h-6" />
+        <SearchBox />
+      </div>
     </div>
 
     {
