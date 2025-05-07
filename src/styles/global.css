@@ -12,16 +12,211 @@
 
 @plugin "daisyui" {
   themes:
-    abyss,
-    synthwave,
-    sunset --default,
-    dark,
-    night,
-    halloween,
-    forest,
-    black;
+    abyss, synthwave, sunset, dark, night, halloween, forest, cisco, black;
   exclude: typography;
   base: false;
+}
+
+@plugin "daisyui/theme" {
+  name: "cisco";
+  color-scheme: dark;
+
+  /* Base colors */
+  --color-base-100: #0e100f;
+  --color-base-200: #1e201f;
+  --color-base-300: #1f211f;
+  --color-base-content: #f8f8f8;
+
+  /* Primary colors */
+  --color-primary: #3aa99f;
+  --color-primary-content: #0e100f;
+
+  /* Secondary colors */
+  --color-secondary: #b392f1;
+  --color-secondary-content: #0e100f;
+
+  /* Accent colors */
+  --color-accent: #fe9900;
+  --color-accent-content: #0e100f;
+
+  /* Neutral colors */
+  --color-neutral: #1e201f;
+  --color-neutral-content: #f8f8f8;
+
+  /* State colors */
+  --color-info: #79b8ff;
+  --color-info-content: #0e100f;
+  --color-success: #879a39;
+  --color-success-content: #f8f8f8;
+  --color-warning: #d0a215;
+  --color-warning-content: #0e100f;
+  --color-error: #d14d41;
+  --color-error-content: #f8f8f8;
+
+  /* Border radius */
+  --radius-box: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-selector: 0.25rem;
+
+  /* Border size */
+  --border: 1px;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+}
+
+@plugin "daisyui/theme" {
+  name: "cisco-classic";
+  color-scheme: dark;
+
+  --color-base-100: #0e1119;
+  --color-base-200: #1c2538;
+  --color-base-300: #2a374d;
+  --color-base-content: #e6e6e6;
+
+  --color-primary: #046eaf;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #64bbe3;
+  --color-secondary-content: #0e1119;
+
+  --color-accent: #00bceb;
+  --color-accent-content: #0e1119;
+
+  --color-neutral: #2a374d;
+  --color-neutral-content: #e6e6e6;
+
+  --color-info: #64bbe3;
+  --color-info-content: #0e1119;
+  --color-success: #6eb43f;
+  --color-success-content: #ffffff;
+  --color-warning: #fbab18;
+  --color-warning-content: #0e1119;
+  --color-error: #e2231a;
+  ---radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+  -color-error-content: #ffffff;
+}
+
+/* 3. Cisco Cool - Emphasis on cooler tones */
+@plugin "daisyui/theme" {
+  name: "cisco-cool";
+  default: true;
+  color-scheme: dark;
+
+  --color-base-100: #0d1214;
+  --color-base-200: #1a2327;
+  --color-base-300: #212c31;
+  --color-base-content: #f0f5f7;
+
+  /* --color-primary: #32ccc0; */
+  --color-primary: #28c8bb;
+  --color-primary-content: #090b0a;
+
+  /* --color-secondary: #c7a9f9; */
+  --color-secondary: #d4befa;
+  --color-secondary-content: #090b0a;
+
+  /* --color-accent: #ffb033; */
+  --color-accent: #df9826;
+  --color-accent-content: #090b0a;
+
+  --color-neutral: #1a2327;
+  --color-neutral-content: #f0f5f7;
+  --depth-1: 0.1rem;
+
+  --color-info: #5fb0f9;
+  --color-info-content: #0d1214;
+  --color-success: #7ca342;
+  --color-success-content: #f0f5f7;
+  --color-warning: #c4972f;
+  --color-warning-content: #0d1214;
+  --color-error: #cb5049;
+  --color-error-content: #f0f5f7;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 1;
+}
+
+/* 4. Cisco Warm - Emphasis on warmer tones */
+@plugin "daisyui/theme" {
+  name: "cisco-warm";
+  color-scheme: dark;
+
+  --color-base-100: #100e0d;
+  --color-base-200: #201c1a;
+  --color-base-300: #2d2825;
+  --color-base-content: #f7f2ed;
+
+  --color-primary: #3ca297;
+  --color-primary-content: #100e0d;
+
+  --color-secondary: #bb97db;
+  --color-secondary-content: #100e0d;
+
+  --color-accent: #ffa132;
+  --color-accent-content: #100e0d;
+
+  --color-neutral: #201c1a;
+  --color-neutral-content: #f7f2ed;
+
+  --color-info: #7ab2eb;
+  --color-info-content: #100e0d;
+  --color-success: #8c9a47;
+  --color-success-content: #f7f2ed;
+  --color-warning: #d8a437;
+  --color-warning-content: #100e0d;
+  --color-error: #d85847;
+  --color-error-content: #f7f2ed;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 1;
+}
+
+/* 5. Cisco Highcontrast - Higher contrast ratio */
+@plugin "daisyui/theme" {
+  name: "cisco-highcontrast";
+  color-scheme: dark;
+
+  --color-base-100: #090b0a;
+  --color-base-200: #161816;
+  --color-base-300: #242624;
+  --color-base-content: #ffffff;
+
+  --color-primary: #32ccc0;
+  --color-primary-content: #090b0a;
+
+  --color-secondary: #c7a9f9;
+  --color-secondary-content: #090b0a;
+
+  --color-accent: #ffb033;
+  --color-accent-content: #090b0a;
+
+  --color-neutral: #161816;
+  --color-neutral-content: #ffffff;
+
+  --color-info: #8ecefd;
+  --color-info-content: #090b0a;
+  --color-success: #a1b53d;
+  --color-success-content: #ffffff;
+  --color-warning: #ffb92e;
+  --color-warning-content: #090b0a;
+  --color-error: #f15a4c;
+  --color-error-content: #ffffff;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
 }
 
 @theme {

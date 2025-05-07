@@ -5,6 +5,7 @@ import Navbar from "@components/Navbar.astro";
 import Footer from "@components/Footer.astro";
 import { ClientRouter, slide, fade } from "astro:transitions";
 import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
+import backgroundImg from "@assets/background.jpg";
 ---
 
 <!doctype html>
@@ -16,7 +17,7 @@ import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
     <title>Astro-AleRaptor</title>
@@ -33,7 +34,7 @@ import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
       })();
     </script>
   </head>
-  <body class="relative w-full h-screen bg-base-200">
+  <body class="relative w-full h-screen bg-base-200 bg-cover">
     <ThemeSwitch />
     <div class={"bg-base-100 drawer lg:drawer-open max-lg:drawer-end"}>
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
@@ -66,7 +67,7 @@ import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
               </label>
             </div>
             <div class="navbar-center lg:hidden text-lg font-black">
-              Space Dino Dive
+              Dino Space Dive
             </div>
             <div class="navbar-end">
               <!-- {!template.menu_left && <DarkLightController />} -->
@@ -77,7 +78,7 @@ import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
         <!--   class="p-8 pt-10 lg:pt-16 lg:max-w-5xl max-w-full mx-auto min-h-screen flex flex-col justify-between" -->
         <!-- > -->
         <!-- <main transition:animate={fade({ duration: ".18s" })}> -->
-        <main class="flex flex-col justify-between h-full">
+        <main class="flex flex-col justify-between bg-primary/1 font-[500]">
           <!-- Page content -->
           <slot />
 
@@ -104,3 +105,7 @@ import ThemeSwitch from "@components/ui/ThemeSwitch.astro";
     <style></style>
   </body>
 </html>
+<style>
+  main {
+  }
+</style>

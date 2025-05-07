@@ -19,7 +19,10 @@ const imageHeight = 400; // Set appropriate default height
 <article
   class="group/card block w-full rounded-xl bg-base-200 shadow-md border border-gray-700 transition-all duration-200 shadow-gray-700/30 hover:shadow-xl hover:shadow-primary-500/20"
 >
-  <a href={`/blog/${post.slug}`} class="block p-4 sm:p-7 hover:text-primary">
+  <a
+    href={`/blog/${post.slug}`}
+    class="block p-4 sm:p-7 hover:text-primary transition-all duration-300"
+  >
     {
       image && (
         <Image
