@@ -2,12 +2,10 @@
 import TimeLineItem from "./TimeLineItem.astro";
 
 const labelColor = [
-  "badge-primary",
   "badge-secondary",
   "badge-info",
+  "badge-primary",
   "badge-success",
-  "badge-warning",
-  "badge-accent",
 ];
 ---
 
@@ -30,14 +28,14 @@ const labelColor = [
     ]}
     tags={[
       { label: "bug-bounty", color: labelColor[0] },
-      { label: "owasp-top10", color: labelColor[2] },
-      { label: "triage", color: labelColor[1] },
+      { label: "owasp-top10", color: labelColor[1] },
       { label: "vulnerability-management", color: labelColor[2] },
-      { label: "automation", color: labelColor[1] },
-      { label: "python3", color: labelColor[0] },
-      { label: "bash", color: labelColor[1] },
+      { label: "triage", color: labelColor[3] },
+      { label: "automation", color: labelColor[2] },
+      { label: "python3", color: labelColor[1] },
+      { label: "bash", color: labelColor[0] },
     ]}
-    collapsedHeight={140}
+    collapsedHeight={120}
   />
 
   <TimeLineItem
@@ -49,21 +47,21 @@ const labelColor = [
       "Self-paced security training: web app hacking, network exploitation, reverse engineering and social-engineering basics.",
       "Completed the OSCP certification, demonstrating hands-on skills in network penetration testing and exploit development .",
       "Practiced real-world exploitation using labs like Hack The Box, TryHackMe, and custom CTF environments.",
-      "Gained familiarity with tools such as Burp Suite, ffuf/gobuster, advanced Nmap, Metasploit and Wireshark",
+      "Gained familiarity with tools such as Burp Suite, ffuf/gobuster, advanced Nmap, Metasploit and Wireshark.",
       "Developed custom scripts for vulnerability scanning and exploitation proof-of-concepts (Python, Bash).",
     ]}
     tags={[
       { label: "OSCP", color: labelColor[0] },
       { label: "bash-scripting", color: labelColor[1] },
       { label: "python3", color: labelColor[2] },
-      { label: "penetration-testing", color: labelColor[1] },
+      { label: "penetration-testing", color: labelColor[3] },
       { label: "privilege-escalation", color: labelColor[2] },
       { label: "active-directory", color: labelColor[1] },
       { label: "metasploit", color: labelColor[0] },
-      { label: "burp-suite", color: labelColor[2] },
-      { label: "nmap", color: labelColor[1] },
-      { label: "ffuf", color: labelColor[0] },
-      { label: "gobuster", color: labelColor[1] },
+      { label: "burp-suite", color: labelColor[1] },
+      { label: "nmap", color: labelColor[2] },
+      { label: "ffuf", color: labelColor[3] },
+      { label: "gobuster", color: labelColor[2] },
     ]}
     collapsedHeight={120}
   />
@@ -74,26 +72,23 @@ const labelColor = [
     title="Full Stack Developer – Itop Consulting"
     summary="Worked on short-term client projects to deliver secure, scalable web and mobile applications using modern frameworks."
     responsibilities={[
-      "Developed full-stack applications with the MEAN stack, focusing on code quality and security",
-      "Built RESTful APIs and implemented robust authentication with JWT",
-      "Created mobile apps using Xamarin.Forms and .NET",
-    ]}
-    descriptionList={[
-      "Gained practical experience building enterprise-grade web solutions, ensuring both functionality and security",
+      "Developed full-stack applications with the MEAN stack, focusing on code quality and security.",
+      "Built RESTful APIs and implemented robust authentication with JWT.",
+      "Created mobile apps using Xamarin.Forms and .NET.",
     ]}
     tags={[
       { label: "MEAN stack", color: labelColor[0] },
-      { label: "agile-development", color: labelColor[2] },
-      { label: "xamarin", color: labelColor[1] },
-      { label: "mobile-app-development", color: labelColor[1] },
+      { label: "agile-development", color: labelColor[1] },
+      { label: "xamarin", color: labelColor[2] },
+      { label: "mobile-app-development", color: labelColor[3] },
     ]}
-    collapsedHeight={30}
+    collapsedHeight={60}
   />
   <TimeLineItem
     position="end"
     time="2014–2019"
     title="Bachelor's Degree in Computer Engineering"
-    summary="Comprehensive education in software development, systems engineering, and al fundamentals."
+    summary="Comprehensive education in software development, systems engineering, and algorithms fundamentals. Here is a despcription of the most important things I learned during my studies."
     descriptionList={[
       "Thesis Project: The development of an Android application incorporating augmented reality (AR) and geolocation functionality has been conducted for the purpose of assisting users in navigating the campus.",
       "Advanced Algorithms & Data Structures: Solved complex problems using graph theory and dynamic programming",
@@ -109,13 +104,14 @@ const labelColor = [
       { label: "C/C++", color: labelColor[0] },
       { label: "Java", color: labelColor[1] },
       { label: "Python", color: labelColor[2] },
-      { label: "Linux", color: labelColor[0] },
-      { label: "OOP", color: labelColor[1] },
-      { label: "MVC", color: labelColor[0] },
-      { label: "Algorithms", color: labelColor[1] },
-      { label: "Networking", color: labelColor[2] },
+      { label: "Linux", color: labelColor[3] },
+      { label: "OOP", color: labelColor[2] },
+      { label: "MVC", color: labelColor[1] },
+      { label: "Algorithms", color: labelColor[0] },
+      { label: "Networking", color: labelColor[1] },
       { label: "SQL", color: labelColor[0] },
       { label: "BSc", color: labelColor[2] },
     ]}
+    collapsedHeight={80}
   />
 </ul>

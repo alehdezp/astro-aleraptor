@@ -52,7 +52,7 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
       <time class="font-mono italic text-base-content">{time}</time>
       <div class="flex text-lg font-bold text-primary mt-3 items-center gap-2">
         {title}
-        {title.includes("OSCP") && <Oscp width="20" height="20" />}
+        {title.includes("OSCP") && <Oscp width="28" height="28" />}
       </div>
     </div>
 
@@ -121,7 +121,7 @@ const hasDetails = list.length > 0 || responsibilities.length > 0;
               <div class="flex flex-wrap gap-2 mt-3">
                 {tags.map((tag: Tag) => (
                   <span
-                    class={`badge badge-sm badge-soft px-2 ${tag.color || "badge-accent"} drop-shadow-xs drop-shadow-current/13`}
+                    class={`badge badge-sm font-normal badge-soft px-2 ${tag.color || "badge-accent"} drop-shadow-md drop-shadow-current/8`}
                   >
                     {tag.label}
                   </span>

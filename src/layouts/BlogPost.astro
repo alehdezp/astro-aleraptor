@@ -4,6 +4,9 @@ import PostDate from "@components/ui/blog/PostDate.astro";
 import PostTags from "@components/ui/blog/PostTags.astro";
 import type { CollectionEntry } from "astro:content";
 import Giscus from "@components/ui/Giscus.astro";
+const images = import.meta.glob("../assets/*.{jpg,png,webp,svg}", {
+  eager: true,
+});
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -20,7 +23,7 @@ const { title, date, tags, image } = post.data;
         <img
           src={image}
           alt={title}
-          class="w-full h-[400px] object-cover rounded-xl shadow-lg mb-8"
+          class="w-full h-fit object-cover rounded-xl mb-8  drop-shadow-md drop-shadow-current mask-y-from-95% mask-y-to-100%"
           loading="eager"
         />
       )
@@ -47,8 +50,9 @@ const { title, date, tags, image } = post.data;
       prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300
       prose-span:text-gray-700 dark:prose-span:text-gray-300
       prose-li:text-gray-700 dark:prose-li:text-gray-300
-      prose-img:rounded-xl prose-headings:text-primary-content prose-h1:text-base-content prose-h2:text-base-content prose-h3:text-accent-content
-    prose-blockquote:w-20 prose-code:w-20"
+      prose-img:rounded-xl prose-headings:text-primary/95! prose-h1:text-base-content prose-h2:text-base-content prose-h3:text-accent-content
+      prose-blockquote:w-20 prose-code:w-20
+      prose-pre:bg-primary/14!"
     >
       <slot />
     </div>

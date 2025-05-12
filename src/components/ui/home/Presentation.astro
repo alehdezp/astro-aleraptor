@@ -16,7 +16,7 @@ const { class: className = "" } = Astro.props;
     alt="Astro Logo"
     width="500"
     height="800"
-    class="rounded-full border-1 border-accent w-full bg-gradient-to-bl from-primary to-secondary"
+    class="rounded-full border-1 border-primary w-full bg-gradient-to-bl from-20% from-primary/80 to-accent/70 to-80%"
   />
   <h1 class="text-center text-3xl font-bold text-gray-50">
     Alejandro Hernández Padron
@@ -31,17 +31,17 @@ const { class: className = "" } = Astro.props;
     <BadgePresentation class="badge-success" name="Secure Code Reviewer" />
   </div>
   <ul
-    class="flex space-x-4 *:w-11 *:rounded-xl *:p-2 text-gray-50! drop-shadow-lg drop-shadow-black"
+    class="flex space-x-3 *:w-11 *:rounded-xl *:p-2 text-gray-50! drop-shadow-md bg-primary-content/30 drop-shadow-primary-content rounded-xl py-1 px-2"
   >
     <li
-      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-102"
+      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103"
     >
       <a href="https://github.com/alehdezp" target="_blank">
         <Icon name="mdi:github" class="h-full w-full" />
       </a>
     </li>
     <li
-      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-102"
+      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103"
     >
       <a
         href="https://www.linkedin.com/in/alejandro-hernandez-padron"
@@ -51,10 +51,17 @@ const { class: className = "" } = Astro.props;
       </a>
     </li>
     <li
-      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-102"
+      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103"
     >
       <a href="https://github.com/alehdezp" target="_blank">
         <Icon name="mdi:twitter" class="h-full w-full" />
+      </a>
+    </li>
+    <li
+      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103"
+    >
+      <a href="https://github.com/alehdezp" target="_blank">
+        <Icon name="mdi:email-outline" class="h-full w-full" />
       </a>
     </li>
   </ul>
@@ -79,11 +86,11 @@ const { class: className = "" } = Astro.props;
       icon="mdi:calendar"
     />
   </ul>
-  <a href="/curriculum">
-    <button
-      class="btn text-xl transition-all btn-soft btn-primary hover:scale-105"
-      >Download Curriculum</button
-    >
-  </a>
+  <!-- <a href="/curriculum"> -->
+  <!--   <button -->
+  <!--     class="btn text-xl transition-all btn-soft btn-primary hover:scale-105" -->
+  <!--     >Download Curriculum</button -->
+  <!--   > -->
+  <!-- </a> -->
 </div>
 <style></style>
