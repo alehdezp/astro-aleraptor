@@ -52,6 +52,9 @@
     "remark-attributes": "^0.3.2",
     "typescript-eslint": "^8.30.1"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.40.2"
+  },
   "author": {
     "name": "Alejandro Hernández",
     "email": "alehdezp8@gmail.com"
