@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeAttr from "rehype-attr";
 
 import { siteConfig } from "./src/config";
 
@@ -31,9 +32,14 @@ export default defineConfig({
           },
         },
       ],
+      [
+        rehypeAttr,
+        {
+          properties: "attr",
+        },
+      ],
     ],
   },
 
   adapter: vercel(),
 });
-
