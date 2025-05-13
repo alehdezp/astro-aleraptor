@@ -1,0 +1,5 @@
+---
+const { alt, src, class: classList } = Astro.props;
+---
+
+<img src={src} alt={alt} class:list={[classList, "mx-auto"]} />
