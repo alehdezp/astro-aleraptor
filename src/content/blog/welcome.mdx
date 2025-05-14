@@ -3,19 +3,23 @@ title: "Welcome Space Cowboy to DinoSpaceDive!"
 description:
   "Welcome to my space-bar! Here you'll find a little introduction about what is
   blog about. Please come in! 🍻"
-date: 2025-05-08
+date: 2025-05-14
 tags: ["dino-space-dive", "me"]
 # image: "/src/assets/space-bar-wide.png"
 ---
 
-import ImgCenteredMd from "@components/ui/ImgCenteredMd.astro";
+import ImgMD from "@components/ui/ImgMD.astro";
+import { Image } from "astro:assets";
+import spaceBar from "images/space-bar-wide.jpg";
 
-![Space Bar](images/space-bar-wide.jpg)
+{/*![Space Bar](images/space-bar-wide.jpg)*/}
 
-Hello, my fellow space-dinos! Welcome to the amazing DinoSpaceDive! The coolest
-bar in cyber-space, designed for all the tech-dinos out there!
+**Hello, my fellow astronauts!** Welcome to the amazing DinoSpaceDive! The
+coolest bar in cyber-space, designed for all the tech-dinos out there!
 
 I’m Alejandro, your host and owner. It’s so great to have you on board!
+
+<Image src={spaceBar} alt="Space Bar" loading="eager" />
 
 This blog is an amazing place where I get to share my little knowledge on
 different topics, technologies, cyber-security and automation. I also get to
@@ -28,25 +32,25 @@ share my knowledge and experiences in a unique way.
 
 Here is a list of the things I’ll be writing about in this blog:
 
-- AppSec: Things like Secure Coding, Web Application Security, DevSecOps, and so
-  on. _(future AppSec Engineer in progress)_
-
+- AppSec: Things like Secure Coduing, Web Application Security, DevSecOps, and
+  so on. _(future AppSec Engineer in progress)_
 - Other Cyber-security topics: Hacking, Triage, Bug Bounty and CTFs.
-
 - Programming and Automation: Python, Bash, Web Development and Chrome
   Extensions.
-
 - Computer and Mac Automation Tips. I love finding better and faster ways to do
   things on my computer.
-
 - A little about my life and trips.
 
 As you can see, it’s a bit of everything. Who knows what I’ll be writing about
 in the future? _(I don’t even know yet!)_
 
-## A little about Me
+## A little about Me (for those interested)
 
-I was born in the Canary Islands in Spain, and I love living here!
+I was born in the beautiful Canary Islands, a Spanish archipelago near Africa. I
+really like living here. The people and weather is amazing, and each island has
+its own unique charm — especially _El Hierro_.
+
+![Canary Islands](images/canary-islands.jpg)
 
 Since I was young, I have really enjoyed playing sports. I played
 football/soccer, tennis and athletics for a while. I still play futsal _(indoor
@@ -71,14 +75,16 @@ problems in your own way of thinking.
 Right now, I’m the kind of person who would rather spend 20 hours automating
 something that could have taken me 10 hours to do manually 🤖.
 
+<ImgMD src="/images/cat-miope.gif" alt="Cat Hacking" astro_enabled={false} />
+
 Once I had finished my Bachelor’s degree, I took a break to think properly about
 what I would like to work on in the future. Although I enjoy programming, I want
 to find a job that I will enjoy in the long term.
 
-While watching Mr. Robot, I realised that although my degree had taught me a lot
-about programming, I still didn’t really understand how computers, the internet
-and the web worked. I could not grasp what the main characters were doing to
-hack into the computers. So I decided to learn more about it.
+While watching Mr. Robot show, I realised that although my degree had taught me
+a lot about programming, I still didn’t really understand how computers, the
+internet and the web worked. I could not grasp what the main characters were
+doing to hack into the computers. So I decided to learn more about it.
 
 During this time, I learnt much more about computers than I did during my
 bachelor’s degree. It was less about passing an exam and more about
@@ -91,8 +97,6 @@ want to know more about my career path, just take a look at the timeline on the
 [homepage](/).
 
 ---
-
-<ImgCenteredMd src="/images/thatsall.gif" alt="Thas's all Folks!" />
 
 That’s all folks! Now, you know what to expect from this blog and know me a bit.
 

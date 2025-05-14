@@ -1,0 +1,12 @@
+---
+import { Image } from "astro:assets";
+const { alt, src, class: classList, astro_enabled = true } = Astro.props;
+---
+
+{
+  astro_enabled ? (
+    <Image src={src} alt={alt} class:list={["mx-auto", classList]} />
+  ) : (
+    <img src={src} alt={alt} class:list={["mx-auto", classList]} />
+  )
+}
