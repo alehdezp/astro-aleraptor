@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <div class="p-8 space-y-8">
+    <h1 class="text-3xl font-bold">Font Loading Test</h1>
+    
+    <div class="space-y-4">
+      <p class="text-xl font-normal">This is regular weight (400)</p>
+      <p class="text-xl font-medium">This is medium weight (500)</p>
+      <p class="text-xl font-bold">This is bold weight (700)</p>
+    </div>
+    
+    <div class="mt-8 p-4 bg-base-200 rounded-lg">
+      <h2 class="text-2xl font-bold mb-4">Font Loading Performance</h2>
+      <p>This page demonstrates optimized font loading with:</p>
+      <ul class="list-disc list-inside space-y-2 ml-4">
+        <li>Self-hosted fonts (eliminated Google Fonts request)</li>
+        <li>Font preloading in the document head</li>
+        <li>font-display: swap for better rendering</li>
+        <li>Optimized WOFF2 font format</li>
+        <li>Unicode range subsetting</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

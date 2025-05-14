@@ -18,6 +18,8 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
+  // No experimental flags needed for our font loading approach
+
   integrations: [icon(), mdx(), sitemap()],
   markdown: {
     rehypePlugins: [

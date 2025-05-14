@@ -5,12 +5,9 @@ const themes = [
   "abyss",
   "synthwave",
   "sunset",
-  "dark",
   "night",
   "halloween",
   "forest",
-  "cisco",
-  "cisco-classic",
   "cisco-highcontrast",
   "cisco-warm",
   "cisco-cool",
@@ -50,7 +47,7 @@ const themes = [
               class="theme-item capitalize justify-between hover:bg-base-300 focus:bg-base-300 transition-all duration-400 hover:scale-110"
             >
               <span>{theme.replace("-", " ")}</span>
-              {theme === "sunset" && (
+              {theme === "cisco-cool" && (
                 <span class="badge badge-xs badge-primary">default</span>
               )}
             </button>
@@ -69,7 +66,7 @@ const themes = [
    */
   class ThemeSwitcher {
     // Define class properties with proper types
-    private readonly defaultTheme: string = "sunset";
+    private readonly defaultTheme: string = "cisco-cool";
 
     constructor() {
       this.initTheme();
