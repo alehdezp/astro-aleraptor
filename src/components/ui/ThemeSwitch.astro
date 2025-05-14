@@ -1,7 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
-// Get all the themes from global.css
+// Only include dark themes regardless of system preferences
 const themes = [
+  // Dark themes only
   "abyss",
   "synthwave",
   "sunset",
@@ -75,11 +76,8 @@ const themes = [
 
     // Initialize theme based on saved preference or system preference
     private initTheme(): void {
-      const storedTheme: string =
-        localStorage.getItem("theme") ||
-        (window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "night"
-          : this.defaultTheme);
+      // Always use a dark theme (cisco-cool by default) regardless of system preference
+      const storedTheme: string = localStorage.getItem("theme") || this.defaultTheme;
 
       document.documentElement.setAttribute("data-theme", storedTheme);
       themeChange(false); // We'll handle localStorage ourselves

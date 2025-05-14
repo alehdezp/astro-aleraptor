@@ -44,14 +44,11 @@ import backgroundImg from "@assets/background.jpg";
     <ClientRouter />
     <title>Dino Space Dive</title>
 
-    <!-- Simple theme initialization -->
+    <!-- Force dark theme initialization regardless of system preference -->
     <script is:inline>
       (function () {
-        const savedTheme =
-          localStorage.getItem("theme") ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "night"
-            : "cisco-cool");
+        // Always use a dark theme (cisco-cool by default)
+        const savedTheme = localStorage.getItem("theme") || "cisco-cool";
         document.documentElement.setAttribute("data-theme", savedTheme);
       })();
     </script>

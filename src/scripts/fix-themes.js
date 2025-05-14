@@ -6,12 +6,38 @@
  */
 
 // Get all CSS variables for the current theme and reapply them directly
+// List of allowed dark themes - only dark themes are permitted
+const allowedDarkThemes = [
+  "night",
+  "halloween",
+  "forest",
+  "synthwave",
+  "abyss",
+  "black",
+  "sunset",
+  "dracula",
+  "dark",
+  "cisco",
+  "cisco-cool",
+  "cisco-warm",
+  "cisco-highcontrast"
+];
+
+// Default dark theme to use if none is set or if a light theme is detected
+const DEFAULT_DARK_THEME = "cisco-cool";
+
 function forceDaisyUITheme() {
   const html = document.documentElement;
-  const currentTheme =
+  let currentTheme =
     html.getAttribute("data-theme") ||
     localStorage.getItem("theme") ||
-    "cisco-cool";
+    DEFAULT_DARK_THEME;
+    
+  // Ensure we're only using dark themes
+  if (!allowedDarkThemes.includes(currentTheme)) {
+    currentTheme = DEFAULT_DARK_THEME;
+    localStorage.setItem("theme", currentTheme);
+  }
 
   // Make sure theme attribute is set
   html.setAttribute("data-theme", currentTheme);

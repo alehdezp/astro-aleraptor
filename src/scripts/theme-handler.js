@@ -7,14 +7,14 @@
 // Default theme if none is set
 const DEFAULT_THEME = "cisco-cool";
 
-// Get theme from localStorage or system preference
+// Get theme from localStorage or use default dark theme
+// Always returns a dark theme regardless of system preference
 function getPreferredTheme() {
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme) return savedTheme;
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "night"
-    : DEFAULT_THEME;
+  // Always use a dark theme (cisco-cool) regardless of system preference
+  return DEFAULT_THEME;
 }
 
 // Apply theme to document and handle DaisyUI specifics
