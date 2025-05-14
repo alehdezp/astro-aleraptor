@@ -19,28 +19,52 @@ import backgroundImg from "@assets/background.jpg";
     />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <!-- Preload critical font files for performance -->
+    <!-- Preload critical font files for Vercel compatibility -->
     <link
       rel="preload"
       href="/fonts/MPLUSRounded1c-Regular.woff2"
       as="font"
       type="font/woff2"
-      crossorigin
+      crossorigin="anonymous"
     />
     <link
       rel="preload"
       href="/fonts/MPLUSRounded1c-Medium.woff2"
       as="font"
       type="font/woff2"
-      crossorigin
+      crossorigin="anonymous"
     />
     <link
       rel="preload"
       href="/fonts/MPLUSRounded1c-Bold.woff2"
       as="font"
       type="font/woff2"
-      crossorigin
+      crossorigin="anonymous"
     />
+    <!-- Fallback font styles for improved loading experience -->
+    <style>
+      @font-face {
+        font-family: 'M PLUS Rounded 1c';
+        font-style: normal;
+        font-weight: 400;
+        font-display: fallback;
+        src: url('/fonts/MPLUSRounded1c-Regular.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'M PLUS Rounded 1c';
+        font-style: normal;
+        font-weight: 500;
+        font-display: fallback;
+        src: url('/fonts/MPLUSRounded1c-Medium.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'M PLUS Rounded 1c';
+        font-style: normal;
+        font-weight: 700;
+        font-display: fallback;
+        src: url('/fonts/MPLUSRounded1c-Bold.woff2') format('woff2');
+      }
+    </style>
     <ClientRouter />
     <title>Dino Space Dive</title>
 
