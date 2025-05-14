@@ -1,5 +1,5 @@
 ---
-// Enhanced Giscus.astro with DaisyUI theme detection
+// Enhanced Giscus.astro with DaisyUI theme detection and view transitions support
 ---
 
 <div class="giscus-wrapper card shadow-xl p-4 mt-8">
@@ -8,20 +8,48 @@
 </div>
 
 <section class="mx-auto mt-12">
-  <script
-    src="https://giscus.app/client.js"
-    data-repo="alehdezp/astro-aleraptor"
-    data-repo-id="R_kgDOOWEucg"
-    data-category="Blog Comments"
-    data-category-id="DIC_kwDOOWEucs4CpzXE"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="en"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async></script>
+  <script>
+    // Function to load Giscus with the current path
+    function loadGiscus() {
+      // First, remove any existing Giscus script to avoid duplicates
+      const existingScript = document.querySelector('.giscus-script');
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      // Remove any existing giscus widgets
+      const existingIframe = document.querySelector('iframe.giscus-frame');
+      if (existingIframe) {
+        existingIframe.remove();
+      }
+
+      // Create and append a new Giscus script with the current path
+      const script = document.createElement('script');
+      script.className = 'giscus-script';
+      script.src = "https://giscus.app/client.js";
+      script.setAttribute('data-repo', "alehdezp/astro-aleraptor");
+      script.setAttribute('data-repo-id', "R_kgDOOWEucg");
+      script.setAttribute('data-category', "Blog Comments");
+      script.setAttribute('data-category-id', "DIC_kwDOOWEucs4CpzXE");
+      script.setAttribute('data-mapping', "pathname");
+      script.setAttribute('data-strict', "0");
+      script.setAttribute('data-reactions-enabled', "1");
+      script.setAttribute('data-emit-metadata', "0");
+      script.setAttribute('data-input-position', "top");
+      script.setAttribute('data-theme', "preferred_color_scheme");
+      script.setAttribute('data-lang', "en");
+      script.setAttribute('data-loading', "lazy");
+      script.crossOrigin = "anonymous";
+      script.async = true;
+
+      document.querySelector('section.mx-auto').appendChild(script);
+    }
+
+    // Load Giscus on initial page load
+    document.addEventListener('DOMContentLoaded', loadGiscus);
+
+    // Reload Giscus after Astro view transitions
+    document.addEventListener('astro:page-load', loadGiscus);
+    document.addEventListener('astro:after-swap', loadGiscus);
+  </script>
 </section>
