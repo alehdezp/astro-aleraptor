@@ -14,10 +14,13 @@ const { class: className = "" } = Astro.props;
   <Image
     src={logo}
     alt="Astro Logo"
-    width="500"
-    height="800"
+    width={500}
+    height={500}
+    quality={80}
+    format="avif"
     class="rounded-full w-full bg-gradient-to-bl from-20% from-primary/80 to-accent/70 to-80%"
     loading="eager"
+    fetchpriority="high"
   />
   <h1 class="text-center text-3xl font-bold text-gray-50">
     Alejandro Hernández Padron
