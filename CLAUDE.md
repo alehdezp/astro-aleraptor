@@ -18,7 +18,7 @@ pnpm run dev
 # Build the site for production
 pnpm run build
 
-# Preview the production build
+# Preview the production build (builds first, then previews)
 pnpm run preview
 
 # Create a new blog post (requires filename argument)
@@ -29,73 +29,106 @@ pnpm run new-post my-new-post
 
 ### Core Technologies
 
-- **Astro 5.7.5**: The main framework for building the site
-- **Tailwind CSS 4.1.3**: For styling with utility classes
-- **MDX**: For content management with enhanced Markdown
-- **DaisyUI**: For UI components and theming
-- **Vercel**: Deployment platform
-- **_Giscus Comments_**: For comments on blog posts
+- **Astro 5.7.5**: Static site generator with islands architecture
+- **Tailwind CSS 4.1.3**: Utility-first CSS framework
+- **MDX**: Content management with component support in Markdown
+- **DaisyUI**: Tailwind CSS component library for theming
+- **Vercel**: Deployment platform (using `@astrojs/vercel` adapter)
+- **Giscus**: Comments system powered by GitHub Discussions
 
-### Key Directories
+### Astro Configuration
 
-- `/src/components/`: UI components used throughout the site
-  - `/src/components/ui/`: Reusable UI components
-  - `/src/components/ui/blog/`: Blog-specific components
-  - `/src/components/ui/home/`: Homepage-specific components
-- `/src/content/blog/`: Blog posts in MDX format
-- `/src/layouts/`: Page layouts
-- `/src/pages/`: Astro pages that define routes
-- `/src/scripts/`: JavaScript utilities for theme handling
+The Astro config (`astro.config.mjs`) includes:
 
-### Content Management
+- Site URL from `src/config.ts`
+- Tailwind CSS via Vite plugin
+- MDX integration for blog posts
+- Sitemap generation
+- Icon support via `astro-icon`
+- Code syntax highlighting via `rehype-pretty-code` with "github-dark" theme
+- Attribute support via `rehype-attr` for custom properties in Markdown
 
-Blog posts are stored in `/src/content/blog/` as MDX files. Each post has
-frontmatter with:
+### Content Collections
 
-```yaml
----
-title: Post Title
-description: Post description
-date: YYYY-MM-DD
-tags: [tag1, tag2]
-draft: true|false
-image: optional/path/to/image.jpg
----
-```
+Blog posts use Astro's content collections system defined in
+`src/content/config.ts`:
+
+- Collection: `blog`
+- Schema enforces: title (required), description (optional), date (required as
+  Date), tags (optional array), draft (optional boolean), image (optional
+  string)
+- Posts are stored as `.md` or `.mdx` files in `src/content/blog/`
+- Created via `scripts/add-post.js` which generates template with current date
 
 ### Theme System
 
-The site uses a custom theme implementation:
+Custom theme implementation designed for Astro View Transitions:
 
-1. The theme system is managed by `/src/scripts/theme-handler.js` and
-   `/src/scripts/fix-themes.js`
-2. Themes are persisted in localStorage and respect system preferences
-3. Special handling exists for Astro View Transitions to maintain theme state
-   during navigation
+- Managed by `src/scripts/theme-handler.js`
+- Default theme: `cisco-cool` (always dark, ignoring system preferences)
+- Themes stored in localStorage and applied via `data-theme` attribute on
+  `<html>`
+- DaisyUI integration for theme switching
+- Astro View Transition event handlers preserve theme across navigation:
+  - `astro:before-preparation`: Saves current theme
+  - `astro:after-preparation`: Applies theme to new DOM
+  - `astro:after-swap`: Re-applies theme after DOM swap
+  - `astro:page-load`: Sets up theme listeners
+- Theme buttons use `data-theme-value` attribute with click handlers
+- Active theme indicated with checkmark (✓) in UI
 
 ### Search Functionality
 
-Search is implemented via `/src/pages/api/search.json.ts` which generates a
-searchable index of blog posts.
+Search API endpoint at `src/pages/api/search.json.ts` generates JSON index of
+blog posts for client-side search.
+
+### Styling System
+
+Tailwind configuration (`tailwind.config.mjs`):
+
+- Custom font: M PLUS Rounded 1c (applied via `font-mplus` class)
+- Iconify integration with dynamic selectors (prefix: `i`)
+- Typography plugin with customized prose styles
+- Content paths include `.astro`, `.mdx`, and Iconify node_modules
 
 ## Configuration
 
-Site configuration is managed in `/src/config.ts` and includes:
+Site-wide settings in `src/config.ts`:
 
 ```typescript
 export const siteConfig: SiteConfig = {
-  site: "https://dinospacedive.com/", // Site URL
-  title: "Dino Space Dive", // Site title
-  slogan: "Dino Space Dive", // Site slogan
+  site: "https://dinospacedive.com/",
+  title: "Dino Space Dive",
+  slogan: "Dino Space Dive",
   description: "Welcome to my personal website",
   social: {
     github: "https://github.com/alehdezp",
     linkedin: "https://www.linkedin.com/in/alejandro-hernandez-padron/",
     email: "alehdezp8@gmail.com",
-    rss: true, // Enable RSS feed
+    rss: true, // Controls RSS feed generation
   },
   googleAnalysis: "", // Google Analytics ID
-  search: true, // Enable search feature
+  search: true, // Controls search feature availability
 };
 ```
+
+## Key Implementation Details
+
+### Creating New Blog Posts
+
+Use `pnpm run new-post <filename>` which:
+
+- Creates file at `src/content/blog/<filename>.md`
+- Auto-populates frontmatter with current date
+- Sets `draft: true` by default
+- Provides template structure
+
+### Icon Usage
+
+Icons use Iconify with Tailwind integration:
+
+- Icon classes: `i-[collection]-[icon-name]`
+- Available collections: `@iconify-json/mdi`, `@iconify-json/simple-icons`,
+  `@iconify-json/streamline`, `@iconify-json/streamline-emojis`
+- Configured in `tailwind.config.mjs` with prefix `i`
 

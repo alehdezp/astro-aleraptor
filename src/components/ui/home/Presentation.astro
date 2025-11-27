@@ -22,9 +22,7 @@ const { class: className = "" } = Astro.props;
     loading="eager"
     fetchpriority="high"
   />
-  <h1 class="text-center text-3xl font-bold text-gray-50">
-    Alejandro Hernández Padron
-  </h1>
+  <h1 class="text-center text-3xl font-bold text-gray-50">Alejandro Hernández Padron</h1>
 
   <div
     class="flex flex-wrap justify-center space-y-2 space-x-2 *:items-center *:text-center *:shadow-current/20 *:shadow-xs"
@@ -37,33 +35,22 @@ const { class: className = "" } = Astro.props;
   <ul
     class="flex space-x-3 *:w-11 *:rounded-xl *:p-2 text-gray-50! bg-base-100/80 rounded-xl py-1 px-2"
   >
-    <li
-      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103"
-    >
+    <li class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103">
       <a href="https://github.com/alehdezp" target="_blank">
         <Icon name="mdi:github" class="h-full w-full" />
       </a>
     </li>
-    <li
-      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103"
-    >
-      <a
-        href="https://www.linkedin.com/in/alejandro-hernandez-padron"
-        target="_blank"
-      >
+    <li class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103">
+      <a href="https://www.linkedin.com/in/alejandro-hernandez-padron" target="_blank">
         <Icon name="mdi:linkedin" class="h-full w-full" />
       </a>
     </li>
-    <li
-      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103"
-    >
+    <li class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103">
       <a href="https://x.com/alex8hp" target="_blank">
         <Icon name="mdi:twitter" class="h-full w-full" />
       </a>
     </li>
-    <li
-      class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103"
-    >
+    <li class="hover:bg-primary transition-all duration-300 ease-in-out hover:scale-103">
       <a href=`mailto:${siteConfig.social.email}` aria-label="Email">
         <Icon name="mdi:email-outline" class="h-full w-full" />
       </a>
@@ -84,17 +71,12 @@ const { class: className = "" } = Astro.props;
       icon="mdi:map-marker"
       divider="true"
     />
-    <PresentationItemList
-      field_name="Birthday"
-      value="05/03/1996"
-      icon="mdi:calendar"
-    />
+    <PresentationItemList field_name="Birthday" value="05/03/1996" icon="mdi:calendar" />
   </ul>
-  <!-- <a href="/curriculum"> -->
-  <!--   <button -->
-  <!--     class="btn text-xl transition-all btn-soft btn-primary hover:scale-105" -->
-  <!--     >Download Curriculum</button -->
-  <!--   > -->
-  <!-- </a> -->
+  <a href="/curriculum/Alejandro_Hernandez_Padron_CV1.pdf" download>
+    <button class="btn text-xl transition-all btn-soft btn-info hover:scale-105">
+      Download Curriculum
+    </button>
+  </a>
 </div>
 <style></style>
